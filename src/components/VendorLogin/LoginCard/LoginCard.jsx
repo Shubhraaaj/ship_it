@@ -1,0 +1,21 @@
+export default function LoginCard(){
+    return(
+        <div class="rounded-lg shadow-lg bg-white max-w-sm p-12">
+            <h1 className="text-4xl tracking-tight font-medium text-gray-900 sm:text-5xl md:text-4xl">Login Now</h1>
+            <input type="email" class=" mx-auto mt-8 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your email" />
+            <input type="password" class=" mx-auto my-8 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your password" />
+            <label className="block">
+                <input type="checkbox" id="termsCheckbox" className="text-xl border-red-200 align-middle"/>
+                <span className="text-gray-400 ml-2 text-sm" >I agree to the Terms of service</span>
+            </label>
+            <button type="button" class="btn btn-primary bg-slate-600 w-full rounded-3xl py-2 my-4">Sign In</button>
+            <div className="flex my-2">
+                <div className="h-0.5 bg-gray-300 flex-1" />
+                <p className="text-sm text-gray-300">OR</p>
+                <div className="h-0.5 bg-gray-300 flex-1" />
+            </div>
+            <button type="button" class="btn btn-primary bg-slate-600 w-full rounded-3xl py-2 my-2">Sign up</button>
+            <p><span>Forgot your password?</span><button type="">Click here</button></p>
+        </div>
+    );
+}
