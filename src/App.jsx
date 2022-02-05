@@ -13,23 +13,23 @@ import ImageUpload from './components/Elements/ImageUpload/ImageUpload';
 import MultiSelect from './components/VendorProfle/MultiSelect/MultiSelect';
 import TariffChart from './components/VendorProfle/TariffChart/TariffChart';
 import VendorProfile from './pages/VendorProfle/VendorProfile';
+import OrderDetails from './pages/OrderDetails/OrderDetails';
+import VendorCompare from './pages/VendorCompare/VendorCompare';
 
 function App() {
   return (
     <div className="App">
-      {/* <LandingPage /> */}
-      {/* <VendorLogin /> */}
-      <VendorProfile />
-      {/* <VendorSignup /> */}
-      {/* <OrderTracking /> */}
+      <LandingPage />
       {/* <SearchDialog /> */}
       {/* <PhoneLogin /> */}
       {/* <FillOrderDetails /> */}
-      {/* <SearchBar /> */}
-      {/* <DetailsCard /> */}
-      {/* <ImageUpload />  */}
-      {/* <MultiSelect /> */}
-      {/* <TariffChart /> */}
+
+      {/* <VendorProfile /> */}
+      {/* <OrderDetails /> */}
+      {/* <VendorLogin /> */}
+      {/* <VendorSignup /> */}
+      {/* <OrderTracking /> */}
+      {/* <VendorCompare /> */}
     </div>
   );
 }

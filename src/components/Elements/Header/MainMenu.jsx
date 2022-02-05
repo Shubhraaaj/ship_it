@@ -1,6 +1,6 @@
-export default function MainMenu(){
+export default function MainMenu({ isWhite }){
     return(
-        <div class="relative py-6 px-4 sm:px-6 lg:px-20 bg-red-50">
+        <div className={isWhite?"relative py-6 px-4 sm:px-6 lg:px-20 bg-white":"relative py-6 px-4 sm:px-6 lg:px-20 bg-red-50"}>
             <nav class="relative flex items-center justify-between sm:h-10 lg:justify-between" aria-label="Global">
                 <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                     <div class="flex items-center justify-between w-full md:w-auto">
