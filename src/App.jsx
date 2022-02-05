@@ -7,17 +7,29 @@ import OrderTracking from './pages/OrderTracking/OrderTracking';
 import SearchDialog from './components/Elements/SearchDialog/SearchDialog';
 import PhoneLogin from './components/Elements/LoginDialogs/PhoneLogin';
 import FillOrderDetails from './pages/FillOrderDetails/FillOrderDetails';
+import SearchBar from './components/VendorCompare/SearchBar/SearchBar';
+import DetailsCard from './components/VendorProfle/DetailsCard';
+import ImageUpload from './components/Elements/ImageUpload/ImageUpload';
+import MultiSelect from './components/VendorProfle/MultiSelect/MultiSelect';
+import TariffChart from './components/VendorProfle/TariffChart/TariffChart';
+import VendorProfile from './pages/VendorProfle/VendorProfile';
 
 function App() {
   return (
     <div className="App">
       {/* <LandingPage /> */}
       {/* <VendorLogin /> */}
+      <VendorProfile />
       {/* <VendorSignup /> */}
       {/* <OrderTracking /> */}
       {/* <SearchDialog /> */}
       {/* <PhoneLogin /> */}
-      <FillOrderDetails />
+      {/* <FillOrderDetails /> */}
+      {/* <SearchBar /> */}
+      {/* <DetailsCard /> */}
+      {/* <ImageUpload />  */}
+      {/* <MultiSelect /> */}
+      {/* <TariffChart /> */}
     </div>
   );
 }

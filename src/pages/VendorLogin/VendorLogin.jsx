@@ -9,8 +9,8 @@ export default function VendorLogin(){
                 <LeftTextwBtn />
             </div>
             <div className="flex-1 p-8">
-                {/* <LoginCard /> */}
-                <OrderDetailsCard />
+                <LoginCard />
+                {/* <OrderDetailsCard /> */}
             </div>
         </div>
     );

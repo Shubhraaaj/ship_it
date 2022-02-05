@@ -2,8 +2,8 @@ import ImageHeadTextCard from "../../Elements/ImageHeadTextCard/ImageHeadTextCar
 
 export default function WhyUs(){
     return(
-        <div class="relative bg-white overflow-hidden my-20">
-            <div class="max-w-7xl mx-auto">
+        <div class="relative bg-white overflow-hidden py-6">
+            <div class="max-w-7xl">
                 <p className="text-3xl font-medium">Why us</p>
                 <div className="bg-black w-24 h-0.5 mx-auto my-4" />
                 <p className="block">

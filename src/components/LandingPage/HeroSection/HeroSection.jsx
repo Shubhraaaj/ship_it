@@ -33,7 +33,7 @@ export default function HeroSection() {
 
                             <a href="#" class="font-medium text-gray-500 hover:text-gray-900">CONTACT US</a>
 
-                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">VENDOR LOGIN</a>
+                            <a href="#" class="font-medium text-red-500 hover:text-red-600">VENDOR LOGIN</a>
                         </div>
                     </nav>
                     </div>
@@ -80,7 +80,7 @@ export default function HeroSection() {
                     </p>
                     <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                         <div class="rounded-md shadow">
-                            <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">
+                            <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-500 hover:bg-red-600 md:py-4 md:text-lg md:px-10">
                                 I want to ship now
                             </a>
                         </div>

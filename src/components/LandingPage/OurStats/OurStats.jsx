@@ -1,6 +1,6 @@
 export default function OurStats(){
     return(
-        <div class="relative bg-white overflow-hidden my-20">
+        <div class="relative bg-red-50 overflow-hidden py-20">
             <div class="max-w-7xl mx-auto">
                 <p className="text-3xl font-medium">Our Stats</p>
                 <div className="bg-black w-24 h-0.5 mx-auto my-4" />
