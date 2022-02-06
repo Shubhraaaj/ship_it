@@ -1,16 +1,63 @@
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+
 export default function OrderDetails({ isSender }){
+    const cities = [
+        { label: "Andhra Pradesh", value: 1 },
+        { label: "Arunachal Pradesh", value: 2 },
+        { label: "Assam", value: 3 },
+        { label: "Bihar", value: 4 },
+        { label: "Chhattisgarh", value: 5 },
+        { label: "Goa", value: 6 },
+        { label: "Gujarat", value: 7 },
+        { label: "Haryana", value: 8 },
+        { label: "Himachal Pradesh", value: 9 },
+        { label: "Jammu and Kashmir", value: 10 },
+        { label: "Jharkhand", value: 11 },
+        { label: "Karnataka", value: 12 },
+        { label: "Kerala", value: 13 },
+        { label: "Madhya Pradesh", value: 14 },
+        { label: "Maharashtra", value: 15 },
+        { label: "Manipur", value: 16 },
+        { label: "Meghalaya", value: 17 },
+        { label: "Mizoram", value: 18 },
+        { label: "Nagaland", value: 19 },
+        { label: "Odisha", value: 20 },
+        { label: "Punjab", value: 21 },
+        { label: "Rajasthan", value: 22 },
+        { label: "Sikkim", value: 23 },
+        { label: "Tamil Nadu", value: 24 },
+        { label: "Telangana", value: 25 },
+        { label: "Tripura", value: 26 },
+        { label: "Uttarakhand", value: 27 },
+        { label: "Uttar Pradesh", value: 28 },
+        { label: "West Bengal", value: 29 },
+        { label: "Andaman and Nicobar Islands", value: 30 },
+        { label: "Chandigarh", value: 31 },
+        { label: "Dadra and Nagar Haveli", value: 32 },
+        { label: "Daman and Diu", value: 33 },
+        { label: "Delhi", value: 34 },
+        { label: "Lakshadweep", value: 35 },
+        { label: "Puducherry", value: 36 }
+    ];
+    const animatedComponents = makeAnimated();
     return(
-        <div className="px-8">
+        <div>
             <div className="flex justify-between">
                 <p className="text-left font-medium text-xl text-gray-600">{isSender? "Sender Details":"Receiver Details"}</p>
-                {isSender && <input type="datetime" class="form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Pickup time" />}
+                {isSender && <input type="datetime-local" class="form-control px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Pickup time" />}
             </div>
-            <input type="datetime" class="form-control block w-full mt-8 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Sender name":"Receiver name"} />
-            <input type="datetime" class="form-control block w-full mt-8 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Sender Phone number":"Receiver Phone number"} />
-            <input type="datetime" class="form-control block w-full mt-8 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Sender Address":"Receiver Address"} />
-            <div className="grid grid-cols-2 space-x-4">
-                <input type="datetime" class="form-control mt-8 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Source State":"Receiver State"} />
-                <input type="datetime" class="form-control mt-8 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Source Pincode":"Receiver Pincode"} />
+            <input type="datetime" class="form-control w-full mt-8 pl-4 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Sender name":"Receiver name"} />
+            <input type="datetime" class="form-control w-full mt-8 pl-4 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Sender Phone number":"Receiver Phone number"} />
+            <input type="datetime" class="form-control w-full mt-8 pl-4 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Sender Address":"Receiver Address"} />
+            <div className="flex space-x-8 justify-between mt-8">
+                <Select
+                    placeholder="Select State"
+                    options={cities} 
+                    className="form-control rounded-xl py-1.5 text-base font-normal flex-1"
+                    components={animatedComponents}
+                />
+                <input type="text" maxLength="6" class="pl-4 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Source Pincode":"Receiver Pincode"} />
             </div>
         </div>
     );

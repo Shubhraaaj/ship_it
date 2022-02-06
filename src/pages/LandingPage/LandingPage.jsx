@@ -7,7 +7,8 @@ import TrackOrder from "../../components/LandingPage/TrackOrder/TrackOrder";
 import WhyUs from "../../components/LandingPage/WhyUs/WhyUs";
 
 export default function LandingPage () {
-    return (<div>
+    return (
+    <div>
         <HeroSection />
         <OfficialPartners />
         <OurStats />

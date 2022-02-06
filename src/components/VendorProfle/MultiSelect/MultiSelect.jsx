@@ -27,7 +27,7 @@ export default function MultiSelect(){
                 options={Countries} 
                 defaultValue={selected} 
                 components={animatedComponents}
-                isMulti />
+                />
         </div>
     );
 }   

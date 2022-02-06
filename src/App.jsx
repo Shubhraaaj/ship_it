@@ -22,7 +22,6 @@ function App() {
       <LandingPage />
       {/* <SearchDialog /> */}
       {/* <PhoneLogin /> */}
-      {/* <FillOrderDetails /> */}
 
       {/* <VendorProfile /> */}
       {/* <OrderDetails /> */}
@@ -30,6 +29,7 @@ function App() {
       {/* <VendorSignup /> */}
       {/* <OrderTracking /> */}
       {/* <VendorCompare /> */}
+      {/* <FillOrderDetails /> */}
     </div>
   );
 }
