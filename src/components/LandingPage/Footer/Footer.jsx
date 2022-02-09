@@ -1,62 +1,64 @@
 export default function Footer() {
     return(
-        <footer className="text-center bg-gray-900 text-white">
-            <div className="container px-6 pt-6">
-                <div className="mb-6">
-                <p>India's biggest network of Courier Providers.</p>
-                </div>
-
-                <div className="grid lg:grid-cols-2 md:grid-cols-2">
-                    <div className="mb-6">
-                        <h5 className="uppercase font-bold mb-2.5">Pages</h5>
-
-                        <ul className="list-none mb-0">
-                        <li>
-                            <a href="#!" className="text-white">Home</a>
-                        </li>
-                        <li>
-                            <a href="#!" className="text-white">About</a>
-                        </li>
-                        <li>
-                            <a href="#!" className="text-white">Vendor Login</a>
-                        </li>
-                        <li>
-                            <a href="#!" className="text-white">Vendor Signup</a>
-                        </li>
-                        <li>
-                            <a href="#!" className="text-white">Track order</a>
-                        </li>
+        <footer className="text-center bg-gray-800 text-white">
+            <div className="container px-6 py-20">
+                <div className="grid lg:grid-cols-3 md:grid-cols-2">
+                    <div className="m-auto">
+                        <h1 className="text-2xl text-left font-bold"><span className="text-white">Shipit.</span></h1>
+                        <p className="text-sm">
+                            <span className="font-light block text-left">India's biggest network of Courier Providers.</span>
+                            <span className="font-light block text-left">Sec V, Salt Lake, Kolkata, West bengal - 700105</span>
+                            <span className="font-light block text-left">+91 860 386 2085 contact@shipit.com</span>
+                        </p>
+                    </div>
+                    <div className="mx-auto">
+                        <h5 className="font-medium mb-2.5 text-left">Pages</h5>
+                        <ul className="list-disc space-y-1">
+                            <li className="text-left">
+                                <a href="#!" className="font-light text-white">Home</a>
+                            </li>
+                            <li className="text-left">
+                                <a href="#!" className="font-light text-white">About</a>
+                            </li>
+                            <li className="text-left">
+                                <a href="#!" className="font-light text-white">Vendor Login</a>
+                            </li>
+                            <li className="text-left">
+                                <a href="#!" className="font-light text-white">Vendor Signup</a>
+                            </li>
+                            <li className="text-left">
+                                <a href="#!" className="font-light text-white">Track order</a>
+                            </li>
                         </ul>
                     </div>
 
-                    <div className="mb-6">
-                        <h5 className="uppercase font-bold mb-2.5">Information</h5>
-
-                        <ul className="list-none mb-0">
-                            <li>
-                                <a href="#!" className="text-white text-left">Terms & Conditions</a>
+                    <div className="mx-auto">
+                        <h5 className="font-medium mb-2.5 text-left">Information</h5>
+                        <ul className="list-disc space-y-1">
+                            <li className="text-left">
+                                <a href="#!" className="font-light text-white">Terms & Conditions</a>
                             </li>
-                            <li>
-                                <a href="#!" className="text-white">Privacy Policy</a>
+                            <li className="text-left">
+                                <a href="#!" className="font-light text-white">Privacy Policy</a>
                             </li>
-                            <li>
-                                <a href="#!" className="text-white">Contact</a>
+                            <li className="text-left">
+                                <a href="#!" className="font-light text-white">Contact</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div className="flex justify-between mx-20">
+            <div className="flex justify-between mx-20 pb-8">
                 <div className="flex justify-center">
                     <a href="#!" type="button" className="text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
                         <svg aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fab"
-                        data-icon="facebook-f"
-                        className="w-2 h-full mx-auto"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 320 512"
+                            focusable="false"
+                            data-prefix="fab"
+                            data-icon="facebook-f"
+                            className="w-3 h-full mx-auto"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"
                     >
                         <path
                         fill="currentColor"
@@ -67,13 +69,13 @@ export default function Footer() {
 
                     <a href="#!" type="button" className="text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
                         <svg aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fab"
-                        data-icon="twitter"
-                        className="w-3 h-full mx-auto"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
+                            focusable="false"
+                            data-prefix="fab"
+                            data-icon="twitter"
+                            className="w-4 h-full mx-auto"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
                         >
                         <path
                             fill="currentColor"
@@ -84,13 +86,13 @@ export default function Footer() {
 
                     <a href="#!" type="button" className="text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
                         <svg aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fab"
-                        data-icon="instagram"
-                        className="w-3 h-full mx-auto"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"
+                            focusable="false"
+                            data-prefix="fab"
+                            data-icon="instagram"
+                            className="w-4 h-full mx-auto"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
                         >
                         <path
                             fill="currentColor"
@@ -101,13 +103,13 @@ export default function Footer() {
 
                     <a href="#!" type="button" className="text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
                         <svg aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fab"
-                        data-icon="linkedin-in"
-                        className="w-3 h-full mx-auto"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"
+                            focusable="false"
+                            data-prefix="fab"
+                            data-icon="linkedin-in"
+                            className="w-4 h-full mx-auto"
+                            role="img"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
                         >
                         <path
                             fill="currentColor"
@@ -116,7 +118,7 @@ export default function Footer() {
                         </svg>
                     </a>
                 </div>
-                <div className="text-center p-4">
+                <div className="text-center">
                     © Shipit. 2021 All rights reserved.
                 </div>
             </div>

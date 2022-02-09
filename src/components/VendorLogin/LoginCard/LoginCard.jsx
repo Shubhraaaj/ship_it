@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function LoginCard(){
     return(
         <div class="rounded-lg shadow-lg bg-white max-w-sm p-12">
@@ -8,13 +10,17 @@ export default function LoginCard(){
                 <input type="checkbox" id="termsCheckbox" className="text-xl border-red-200 align-middle"/>
                 <span className="text-gray-400 ml-2 text-sm" >I agree to the Terms of service</span>
             </label>
-            <button type="button" class="btn btn-primary bg-red-500 text-white font-medium w-full rounded-3xl py-2 my-4">SIGN IN</button>
+            <Link to='/vendor_profile'>
+                <button type="button" class="btn btn-primary bg-red-500 text-white font-medium w-full rounded-3xl py-2 my-4">SIGN IN</button>
+            </Link>
             <div className="flex my-2">
                 <div className="h-0.5 bg-gray-200 flex-1 place-self-center	" />
                 <p className="text-sm text-gray-200 mx-2">or</p>
                 <div className="h-0.5 bg-gray-200 flex-1 place-self-center	" />
             </div>
-            <button type="button" class="btn btn-primary bg-gray-800 font-medium text-white w-full rounded-3xl py-2 my-2">SIGN UP</button>
+            <Link to='/vendor_signup'>
+                <button type="button" class="btn btn-primary bg-gray-800 font-medium text-white w-full rounded-3xl py-2 my-2">SIGN UP</button>
+            </Link>
             <p className="mt-2"><span className="text-gray-400 font-medium">Forgot your password?</span><button type="button" className="text-green-500 font-medium ml-2">Click here</button></p>
         </div>
     );

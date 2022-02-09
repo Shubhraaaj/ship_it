@@ -1,14 +1,16 @@
+import CircleCounter from "./CircleCounter";
+
 export default function OurStats(){
     return(
-        <div class="relative bg-red-50 overflow-hidden py-20">
+        <div class="relative bg-red-50 overflow-hidden py-12">
             <div class="max-w-7xl mx-auto">
-                <p className="text-3xl font-medium">Our Stats</p>
+                <p className="text-3xl font-bold">Our Stats</p>
                 <div className="bg-black w-24 h-0.5 mx-auto my-4" />
-                <div className="mt-8 grid grid-cols-4 grid-rows-1">
-                    <img class="h-8 w-auto mx-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" />
-                    <img class="h-8 w-auto mx-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" />
-                    <img class="h-8 w-auto mx-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" />
-                    <img class="h-8 w-auto mx-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" />
+                <div className="mt-12 grid grid-cols-4 grid-rows-1">
+                    <CircleCounter number="60" title="Destinations Covered"/>
+                    <CircleCounter number="121" title="Orders Completed"/>
+                    <CircleCounter number="18" title="Vendor Partners"/>
+                    <CircleCounter number="DTDC" title="Trending Vendor"/>
                 </div>
             </div>
         </div>

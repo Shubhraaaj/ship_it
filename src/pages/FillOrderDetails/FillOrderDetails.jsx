@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import MainMenu from "../../components/Elements/Header/MainMenu";
 import OrderDetails from "../../components/FillOrderDetails/OrderDetails/OrderDetails";
 
@@ -17,7 +18,7 @@ export default function FillOrderDetails(){
                     </div>
                     <div className="mx-12">
                         <OrderDetails />
-                        <button type="button" class="btn mt-8 w-full text-center btn-primary font-medium bg-red-500 hover:bg-red-600 rounded-xl text-white py-2">PLACE ORDER</button>
+                        <button type="button" class="btn mt-8 w-full text-center btn-primary font-medium bg-red-500 hover:bg-red-600 rounded-xl text-white py-2"><Link to='/order_details'>PLACE ORDER</Link></button>
                     </div>
                 </div>
             </div>

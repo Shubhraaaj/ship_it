@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import MainMenu from "../../Elements/Header/MainMenu";
 
 export default function HeroSection() {
@@ -18,9 +19,9 @@ export default function HeroSection() {
                             </p>
                             <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                                 <div class="rounded-md shadow">
-                                    <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-500 hover:bg-red-600 md:py-4 md:text-lg md:px-10">
+                                    <Link to='/search'><a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-500 hover:bg-red-600 md:py-4 md:text-lg md:px-10">
                                         I want to ship now
-                                    </a>
+                                    </a></Link>
                                 </div>
                             </div>
                         </div>

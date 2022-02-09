@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 export default function SearchBar(){
     return(
@@ -6,7 +7,9 @@ export default function SearchBar(){
             <input type="text" class="pl-4 py-1 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Destination" />
             <input type="number" class="pl-4 py-1 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Weight" />
             <input type="text" class="pl-4 py-1 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Type" />
-            <button type="button" class="flex-1 bg-red-500 hover:bg-red-600 rounded-3xl font-medium text-white">SEARCH VENDORS</button>
+            <button type="button" class="flex-1 bg-red-500 hover:bg-red-600 rounded-3xl font-medium text-white">
+                <Link to='/fill_order'>SEARCH VENDORS</Link>
+            </button>
         </div>
     );
 }

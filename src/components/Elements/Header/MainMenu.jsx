@@ -1,14 +1,16 @@
+import { Link } from "react-router-dom";
+
 export default function MainMenu({ isWhite }){
     return(
         <div className={isWhite?"relative py-6 px-4 sm:px-6 lg:px-20 bg-white":"relative py-6 px-4 sm:px-6 lg:px-20 bg-red-50"}>
             <nav class="relative flex items-center justify-between sm:h-10 lg:justify-between" aria-label="Global">
                 <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                     <div class="flex items-center justify-between w-full md:w-auto">
-                        <a href="#">
+                        <Link to="/"><a href="#">
                         <span class="sr-only">Shipit</span>
                             <h1 className="text-3xl font-bold"><span className="text-gray-800">Ship</span><span className="text-red-500">it.</span></h1>
                             {/* <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" /> */}
-                        </a>
+                        </a></Link>
                         <div class="-mr-2 flex items-center md:hidden">
                         <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
                             <span class="sr-only">Open main menu</span>
@@ -25,8 +27,9 @@ export default function MainMenu({ isWhite }){
                     <a href="#" class="font-medium text-gray-700 hover:text-gray-900">TRACK PACKAGE</a>
 
                     <a href="#" class="font-medium text-gray-700 hover:text-gray-900">CONTACT US</a>
-
-                    <a href="#" class="font-medium text-red-500 hover:text-red-600">VENDOR LOGIN</a>
+                    <Link to={'/vendor_login'}>
+                        <a href="#" class="font-medium text-red-500 hover:text-red-600">VENDOR LOGIN</a>
+                    </Link>
                 </div>
             </nav>
         </div>
