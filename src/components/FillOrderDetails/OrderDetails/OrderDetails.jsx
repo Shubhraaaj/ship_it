@@ -1,5 +1,6 @@
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import SelectStates from '../../Elements/SelectStates/SelectStates';
 
 export default function OrderDetails({ isSender }){
     const cities = [
@@ -44,20 +45,16 @@ export default function OrderDetails({ isSender }){
     return(
         <div>
             <div className="flex justify-between">
-                <p className="text-left font-medium text-xl text-gray-600">{isSender? "Sender Details":"Receiver Details"}</p>
+                <p className="text-left font-medium text-lg text-gray-500">{isSender? "Sender Details":"Receiver Details"}</p>
                 {isSender && <input type="datetime-local" class="form-control px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Pickup time" />}
             </div>
             <input type="datetime" class="form-control w-full mt-8 pl-4 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Sender name":"Receiver name"} />
             <input type="datetime" class="form-control w-full mt-8 pl-4 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Sender Phone number":"Receiver Phone number"} />
             <input type="datetime" class="form-control w-full mt-8 pl-4 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Sender Address":"Receiver Address"} />
-            <div className="flex space-x-8 justify-between mt-8">
-                <Select
-                    placeholder="Select State"
-                    options={cities} 
-                    className="form-control rounded-xl py-1.5 text-base font-normal flex-1"
-                    components={animatedComponents}
-                />
-                <input type="text" maxLength="6" class="pl-4 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Source Pincode":"Receiver Pincode"} />
+            <div className="flex space-x-8 justify-between">
+                <SelectStates />
+                <input type="datetime" class="form-control w-full mt-8 pl-4 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Source Pincode":"Receiver Pincode"} />
+                {/* <input type="text" maxLength="6" class="pl-4 text-base font-normal text-gray-700 bg-white border border-solid border-gray-300 rounded-xl transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder={isSender?"Source Pincode":"Receiver Pincode"} /> */}
             </div>
         </div>
     );

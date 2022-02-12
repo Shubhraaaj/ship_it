@@ -16,7 +16,7 @@ export default function TariffChart(){
                 <h4 className="font-medium text-base text-gray-600">Tariff Chart</h4>
                 <p>
                     {/* <span className="text-md text-gray-600 mr-2">Sample excel sheet</span> */}
-                    <a className="font-medium text-red-400 underline">Sample</a>
+                    <a className="font-medium text-red-400 underline">Download Sample</a>
                 </p>
             </div>
             <div className="border rounded-3xl flex mt-4 justify-between">

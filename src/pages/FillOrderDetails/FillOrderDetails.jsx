@@ -7,7 +7,7 @@ export default function FillOrderDetails(){
         <div>
             <MainMenu isWhite />
             <div className="py-8 px-12 mx-20 shadow-md mt-4 mb-8 bg-red-50 rounded-xl">
-                <h3 className="text-xl text-gray-700 font-medium">Please enter the Sender and Receiver details to place your order</h3>
+                <h3 className="text-xl text-center text-gray-900 font-medium">Please enter the Sender and Receiver Details</h3>
                 <div className="grid grid-cols-2 grid-rows-1 mt-8">
                     <div className="mx-12">
                         <OrderDetails isSender/>

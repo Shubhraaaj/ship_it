@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function LoginCard(){
     return(
         <div class="rounded-lg shadow-lg bg-white max-w-sm p-12">
-            <h1 className="text-4xl tracking-tight font-medium text-gray-900 sm:text-5xl md:text-4xl">Login Now</h1>
+            <h1 className="text-xl tracking-tight text-center font-medium text-gray-900 sm:text-5xl md:text-4xl">Login Now</h1>
             <input type="email" class=" mx-auto mt-8 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your email" />
             <input type="password" class=" mx-auto my-8 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your password" />
             <label className="block">
