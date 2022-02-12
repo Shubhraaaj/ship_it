@@ -2,7 +2,7 @@ import ImageUpload from "../../components/Elements/ImageUpload/ImageUpload";
 import DetailsCard from "../../components/VendorProfle/DetailsCard";
 import MultiSelect from "../../components/VendorProfle/MultiSelect/MultiSelect";
 import TariffChart from "../../components/VendorProfle/TariffChart/TariffChart";
-import MainMenu from "../../components/Elements/Header/MainMenu";
+import MainMenu from "../../components/Elements/MainMenu/MainMenu";
 
 export default function VendorProfile(){
     return(

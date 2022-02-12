@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import MainMenu from "../../Elements/Header/MainMenu";
+import MainMenu from "../../Elements/MainMenu/MainMenu";
 
 export default function HeroSection() {
     return (

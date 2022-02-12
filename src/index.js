@@ -14,6 +14,7 @@ import FillOrderDetails from './pages/FillOrderDetails/FillOrderDetails';
 import SearchModal from './components/Elements/SearchDialog/SearchModal';
 import Overlay from './components/Elements/Overlay/Overlay';
 import LandingPage from './pages/LandingPage/LandingPage';
+import VendorDashboard from './pages/VendorDashboard/VendorDashboard';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -30,6 +31,7 @@ ReactDOM.render(
         <Route path="/search" element={<SearchModal />} />
         <Route path="/user_auth" element={<Overlay />} />
         <Route path="/find_vendors" element={<VendorCompare />} />
+        <Route path="/vendor_dashboard" element={<VendorDashboard />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
