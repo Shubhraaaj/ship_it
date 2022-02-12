@@ -2,7 +2,25 @@ import MainMenu from "../../components/Elements/MainMenu/MainMenu";
 import LeftTextwBtn from "../../components/Elements/LeftTextwBtn/LeftTextwBtn";
 import LoginCard from "../../components/VendorLogin/LoginCard/LoginCard";
 
+import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from "@apollo/client";
+
 export default function VendorLogin(){
+
+    const client = new ApolloClient({
+        uri: 'https://48p1r2roz4.sse.codesandbox.io',
+        cache: new InMemoryCache()
+    });
+
+    client.query({
+        query: gql`
+            query GetRates {
+                rates(currency: "USD") {
+                currency
+                }
+            }
+        `
+    }).then(res=>console.log(res));
+
     return(
         <div className="flex flex-col h-1/2 bg-red-50">
             <MainMenu />
