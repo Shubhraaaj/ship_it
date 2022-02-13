@@ -52,64 +52,64 @@ export default function OrdersTable(){
         }
     ];
     return(
-        <div class="flex flex-col">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-hidden">
-                    <table class="min-w-full text-center">
-                    <thead class="border-b bg-red-50">
+        <div className="flex flex-col">
+            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="inline-block min-w-full sm:px-6 lg:px-8">
+                <div className="overflow-hidden">
+                    <table className="min-w-full text-center">
+                    <thead className="border-b bg-red-50">
                         <tr>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Sl.No.
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Order ID
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Source
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Destination
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Type
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Bill
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Priority
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Status
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {orders.map((order,index)=>
-                            <tr class="bg-white border-b">
-                                <td class="px-auto py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <tr className="bg-white border-b">
+                                <td className="px-auto py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {index+1}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {order.id}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {order.source}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {order.destination}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {order.type}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     Rs.{order.bill}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {order.priority}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {/* {order.status} */}
                                     <select>
                                         <option value="Pending">Pending</option>

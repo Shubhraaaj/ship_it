@@ -26,7 +26,7 @@ export default function LiveStatus(){
     return(
         <div className="pl-28 py-8 bg-white rounded-xl shadow-md mt-8">
             <h3 className="text-red-500 text-2xl font-medium -ml-16 text-left mb-8">Live Status</h3>
-            <ol class="relative border-l border-gray-600">
+            <ol className="relative border-l border-gray-600">
                 {orderStatus.map((oStatus) =>
                     <Timeline date={oStatus.time} status={oStatus.status} />
                 )}

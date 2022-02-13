@@ -38,46 +38,46 @@ export default function VendorTable(){
     ];
 
     return(
-        <div class="flex flex-col mx-20">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-hidden">
-                    <table class="min-w-full text-center">
-                    <thead class="border-b bg-gray-100">
+        <div className="flex flex-col mx-20">
+            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8">
+                <div className="overflow-hidden">
+                    <table className="min-w-full text-center">
+                    <thead className="border-b bg-gray-100">
                         <tr>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Vendor
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Normal Delivery
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Normal Tariff
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Priority Delivery
                             </th>
-                            <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
+                            <th scope="col" className="text-sm font-medium text-gray-800 px-6 py-4">
                                 Priority Tariff
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {vendors.map((vendor)=>
-                            <tr class="bg-white border-b">
-                                <td class="px-auto py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <tr className="bg-white border-b">
+                                <td className="px-auto py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {vendor.name}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {Number(vendor.deliveryTime)+1} Days
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     <button className="btn btn-primary bg-red-400 px-4 py-1 rounded-md text-white font-medium">Rs.{vendor.normalPrice}</button>
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {vendor.deliveryTime} Days
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 <button className="btn btn-primary bg-green-500 px-4 py-1 rounded-md text-white font-medium">Rs.{vendor.priorityPrice}</button>
                                 </td>
                             </tr>

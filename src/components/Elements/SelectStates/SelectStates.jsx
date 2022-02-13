@@ -39,7 +39,7 @@ export default function SelectStates(){
     ];
     return(
         <select
-            class="mt-8 w-full form-control px-3 py-1.5 text-base font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
+            className="mt-8 w-full form-control px-3 py-1.5 text-base font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
             placeholder="Select State">
                 <option value="" disabled selected className="disabled:text-gray-400">Select State</option>
                 {states.map((state)=><option value={state.label}>{state.label}</option>)}

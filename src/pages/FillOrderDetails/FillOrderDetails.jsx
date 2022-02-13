@@ -22,7 +22,7 @@ export default function FillOrderDetails(){
                         <p><span className="block text-gray-600 font-normal text-xl text-left">Final Bill</span><span className="text-left text-gray-600 block">(Incl. taxes)</span></p>
                         <span className="text-3xl font-medium">Rs.2880.00</span>
                     </p>
-                    <button type="button" class="btn flex-1 w-full mx-auto mt-8 text-center btn-primary font-medium bg-red-500 hover:bg-red-600 rounded-xl text-white py-2"><Link to='/order_details'>PLACE ORDER</Link></button>
+                    <button type="button" className="btn flex-1 w-full mx-auto mt-8 text-center btn-primary font-medium bg-red-500 hover:bg-red-600 rounded-xl text-white py-2"><Link to='/order_details'>PLACE ORDER</Link></button>
                 </div>
             </div>
         </div>

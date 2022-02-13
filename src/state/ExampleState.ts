@@ -1,6 +1,6 @@
 import {Store} from 'rxjs-observable-store';
 
-class ExampleState {
+className ExampleState {
     exampleText = 'initial text';
     exampleObject = {
         property1: {
@@ -11,7 +11,7 @@ class ExampleState {
     };
 }
 
-class ExampleStore extends Store<ExampleState> {
+className ExampleStore extends Store<ExampleState> {
     constructor() {
         super(new ExampleState());
     }
@@ -34,7 +34,7 @@ class ExampleStore extends Store<ExampleState> {
     }
 }
 
-class TestComponent {
+className TestComponent {
     store: ExampleStore;
 
     constructor() {
