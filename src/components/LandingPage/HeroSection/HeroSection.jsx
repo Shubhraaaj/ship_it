@@ -4,7 +4,7 @@ import MainMenu from "../../Elements/MainMenu/MainMenu";
 export default function HeroSection() {
     return (
         <div>
-            <MainMenu />
+            {/* <MainMenu /> */}
             <div class="relative bg-white overflow-hidden">
                 <div className="absolute">
                     <main class="mt-10 mx-12 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-16 xl:mt-28">

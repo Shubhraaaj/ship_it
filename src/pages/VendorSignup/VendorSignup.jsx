@@ -6,7 +6,7 @@ import OrderTracking from "../OrderTracking/OrderTracking";
 export default function VendorSignup(){
     return(
         <div className="flex flex-col h-1/2 bg-red-50">
-            <MainMenu />
+            {/* <MainMenu /> */}
             <div className="grid grid-cols-2 my-8">
                 <div className="flex flex-col mx-36 my-auto">
                     <LeftTextwBtn 

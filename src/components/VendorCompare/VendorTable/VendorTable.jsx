@@ -43,7 +43,7 @@ export default function VendorTable(){
                 <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
                     <table class="min-w-full text-center">
-                    <thead class="border-b bg-red-50">
+                    <thead class="border-b bg-gray-100">
                         <tr>
                             <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4">
                                 Vendor

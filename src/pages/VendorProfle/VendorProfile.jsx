@@ -7,7 +7,7 @@ import MainMenu from "../../components/Elements/MainMenu/MainMenu";
 export default function VendorProfile(){
     return(
         <div className="flex flex-col h-1/2 bg-red-50">
-            <MainMenu />
+            {/* <MainMenu /> */}
             <div className="grid grid-cols-2 my-8">
                 <div className="flex flex-col mx-20 ">
                     <ImageUpload className="flex-1"/>

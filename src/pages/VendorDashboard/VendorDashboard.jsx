@@ -4,7 +4,7 @@ import OrdersTable from "../../components/VendorDashboard/OrdersTab";
 export default function VendorDashboard(){
     return(
         <div>
-            <MainMenu />
+            {/* <MainMenu /> */}
             <OrdersTable />
         </div>
     );

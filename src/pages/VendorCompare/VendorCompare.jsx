@@ -4,8 +4,8 @@ import VendorTable from "../../components/VendorCompare/VendorTable/VendorTable"
 
 export default function VendorCompare(){
     return(
-        <div>
-            <MainMenu isWhite/>
+        <div className="bg-red-50 py-4">
+            {/* <MainMenu isWhite/> */}
             <SearchBar />
             <VendorTable />
         </div>

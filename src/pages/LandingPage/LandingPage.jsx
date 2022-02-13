@@ -15,6 +15,6 @@ export default function LandingPage () {
         <WhyUs />
         <TrackOrder />
         <Contactus />
-        <Footer />
+        {/* <Footer /> */}
     </div>);
 };

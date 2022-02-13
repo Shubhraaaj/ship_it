@@ -4,9 +4,9 @@ import OrderDetails from "../../components/FillOrderDetails/OrderDetails/OrderDe
 
 export default function FillOrderDetails(){
     return(
-        <div>
-            <MainMenu isWhite />
-            <div className="py-8 px-12 mx-20 shadow-md mt-4 mb-8 bg-red-50 rounded-xl">
+        <div className="bg-red-50 pb-8 pt-4">
+            {/* <MainMenu isWhite /> */}
+            <div className="py-8 px-12 mx-20 shadow-md bg-white rounded-xl">
                 <h3 className="text-xl text-center text-gray-900 font-medium">Please enter the Sender and Receiver Details</h3>
                 <div className="flex flex-row mt-8">
                     <div className="mx-12">
