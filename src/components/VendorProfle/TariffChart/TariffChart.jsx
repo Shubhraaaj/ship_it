@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-export default function TariffChart(){
+export default function TariffChart({ onUpdate }){
     const fileInput = useRef(null);
     const [filename, setFilename] = useState("Click to select file");
     const handleClick = () => {
@@ -8,6 +8,7 @@ export default function TariffChart(){
     };
     const handleExcel = (event) =>{
         setFilename(event.target.value);
+        onUpdate([...event.target.files]);
     };
 
     return(

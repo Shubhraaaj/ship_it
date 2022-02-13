@@ -1,11 +1,11 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { SIGNUP_VENDOR } from "../../../graphql/mutations";
 
 export default function SignupCard(){
     const [user, setUser] = useState({});
     const [formErrors, setFormErrors] = useState({});
-    const [signup, { loading, error, data }] = useMutation(SIGNUP_VENDOR);
+    const [signup, { data, loading, error }] = useMutation(SIGNUP_VENDOR);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,15 +31,18 @@ export default function SignupCard(){
     };
 
     const handleSubmit = () =>{
+        const vendorInput = {
+            name:user.name,
+            email:user.email,
+            phone_number:user.phone,
+            password:user.password
+        };
         console.log(user);
         signup({
             variables: { 
-                name: user.name, 
-                email: user.email, 
-                phone: user.phone, 
-                password: user.password
+                vendorInput: vendorInput
             }
-        });
+        }).then(res=>console.log(res)).catch(err=>console.log(err));
     };
 
     return(

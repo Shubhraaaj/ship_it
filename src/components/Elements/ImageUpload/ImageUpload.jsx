@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function ImageUpload(){
+export default function ImageUpload({ onUpdate }){
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState(["https://i.ibb.co/qyxLRfq/Shipit-logo-upload-1.jpg"]);
     const fileInput = useRef(null);
@@ -18,6 +18,7 @@ export default function ImageUpload(){
 
     const onImageChange = (event) => {
         setImages([...event.target.files]);
+        onUpdate([...event.target.files]);
     };
 
   return(

@@ -10,14 +10,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-const shititClient = new ApolloClient({
+const shipitClient = new ApolloClient({
   uri: 'http://13.234.187.25:5000/graphql',
   cache: new InMemoryCache()
 });
 
 ReactDOM.render(
   <React.StrictMode>
-      <ApolloProvider client={client}>
+      <ApolloProvider client={shipitClient}>
           <App />
       </ApolloProvider>
   </React.StrictMode>,
