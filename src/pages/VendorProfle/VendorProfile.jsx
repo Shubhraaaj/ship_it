@@ -3,9 +3,10 @@ import DetailsCard from "../../components/VendorProfle/DetailsCard";
 import MultiSelect from "../../components/VendorProfle/MultiSelect/MultiSelect";
 import TariffChart from "../../components/VendorProfle/TariffChart/TariffChart";
 import MainMenu from "../../components/Elements/MainMenu/MainMenu";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { TARIFFCHART_UPLOAD, UPDATE_PROFILE } from "../../graphql/mutations";
 import { useMutation } from "@apollo/client";
+import vendorStore from "../../store/vendor";
 
 
 export default function VendorProfile(){
@@ -13,6 +14,13 @@ export default function VendorProfile(){
     const [vendorProfile, setVendorProfile] = useState({});
     const [updateProfile, { dataP, loadingP, errorP }] = useMutation(UPDATE_PROFILE);
     const [uploadTariffChart, { data, loading, error }] = useMutation(TARIFFCHART_UPLOAD);
+
+    const [vendorState, setVendorState] = useState(vendorStore.initialState);
+
+    useLayoutEffect(()=>{
+        vendorStore.subscribe(setVendorState);
+        vendorStore.init();
+    },[]);
 
     const [image, setImage] = useState();
     const logoChange = (value) => {
@@ -65,25 +73,26 @@ export default function VendorProfile(){
     }
 
     const handleSubmit = () => {
-        uploadTariff();
-        const base64logo = getBase64(vendorProfile.logo[0]);
-        const updatedProfile = {
-            vendor_id: "",
-            name: vendorProfile.organisation,
-            phone_number: vendorProfile.phone,
-            email: vendorProfile.email,
-            service_cities: vendorProfile.operatingCities,
-            logo: base64logo,
-            tariff_chart_id: vendorProfile.tariffChart
-        };
-        console.log(updatedProfile);
-        updateProfile({
-            variables: { 
-                updateVendorInput: updatedProfile
-            }
-        }).then(res=>{
-            console.log(res);
-        }).catch(err=>console.log(err));
+        console.log(vendorState);
+        // uploadTariff();
+        // const base64logo = getBase64(vendorProfile.logo[0]);
+        // const updatedProfile = {
+        //     vendor_id: "",
+        //     name: vendorProfile.organisation,
+        //     phone_number: vendorProfile.phone,
+        //     email: vendorProfile.email,
+        //     service_cities: vendorProfile.operatingCities,
+        //     logo: base64logo,
+        //     tariff_chart_id: vendorProfile.tariffChart
+        // };
+        // console.log(updatedProfile);
+        // updateProfile({
+        //     variables: { 
+        //         updateVendorInput: updatedProfile
+        //     }
+        // }).then(res=>{
+        //     console.log(res);
+        // }).catch(err=>console.log(err));
     };
 
     return(

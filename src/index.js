@@ -4,10 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from "@apollo/client";
-import Dummy from './components/Elements/Dummy/Dummy';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import PersonSwitcher from './components/Elements/PersonSwitcher/PersonSwitcher';
-import Dummy2 from './components/Elements/Dummy2/Dummy2';
 
 const client = new ApolloClient({
   uri: 'https://48p1r2roz4.sse.codesandbox.io',
@@ -21,19 +17,9 @@ const shipitClient = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-      {/* <ApolloProvider client={shipitClient}>
+      <ApolloProvider client={shipitClient}>
           <App />
-      </ApolloProvider> */}
-      <BrowserRouter>
-        <>
-          <PersonSwitcher />
-            <Routes>
-                <Route path="/" element={<Dummy />} exact/>
-                <Route path="/first-person" element={<Dummy />} exact/>
-                <Route path="/second-person" element={<Dummy2 />} exact/>
-            </Routes>
-        </>
-      </BrowserRouter>
+      </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

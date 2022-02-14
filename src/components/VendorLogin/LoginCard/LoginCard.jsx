@@ -1,13 +1,23 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SIGNIN_VENDOR } from "../../../graphql/mutations";
+import vendorStore from "../../../store/vendor";
 
 export default function LoginCard(){
     const [user, setUser] = useState({});
+
+    const [vendorState, setVendorState] = useState(vendorStore.initialState);
+
     const [login, { data, loading, error }] = useMutation(SIGNIN_VENDOR);
     const navigate = useNavigate();
     const profilePath = '/vendor_profile';
+
+    // useLayoutEffect(()=>{
+    //     vendorStore.subscribe(setVendorState);
+    //     vendorStore.init();
+    // },[]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         switch (name) {
@@ -34,6 +44,13 @@ export default function LoginCard(){
                 loginInput: loginInput
             }
         }).then(res=>{
+            const vendorDetails = {
+                user_email: res.data.login.user_email,
+                auth_token: res.data.login.auth_token,
+                id: res.data.login.id
+            };
+            vendorStore.setVendorDetails(vendorDetails);
+            // vendorStore.clearVendorDetails();
             navigate(profilePath);
         }).catch(err=>console.log(err));
     };

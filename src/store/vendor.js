@@ -38,7 +38,7 @@ const vendorStore = {
       state = vendor;
       subject.next(state);
     },
-    clearChat: () => {
+    clearVendorDetails: () => {
       state = initialState;
       subject.next(state);
     },
