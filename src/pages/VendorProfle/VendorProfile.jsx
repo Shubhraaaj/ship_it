@@ -16,6 +16,7 @@ export default function VendorProfile(){
     const [uploadTariffChart, { data, loading, error }] = useMutation(TARIFFCHART_UPLOAD);
 
     const [vendorState, setVendorState] = useState(vendorStore.initialState);
+    const [tariffId, setTariffId] = useState("");
 
     useLayoutEffect(()=>{
         vendorStore.subscribe(setVendorState);
@@ -32,7 +33,6 @@ export default function VendorProfile(){
     };
 
     const operatingCities = (value) => {
-        console.log(value.map((city)=>console.log(city.label)));
         setVendorProfile({ ...vendorProfile, operatingCities: value.map((city)=>city.label) });
     };
 
@@ -60,39 +60,45 @@ export default function VendorProfile(){
     };
 
     const uploadTariff = async () => {
-        const base64excel = getBase64(vendorProfile.tariffChart[0]);
+        const base64excel = await getBase64(vendorProfile.tariffChart[0]);
         const tariffObj = {
             tariff: base64excel,
-            vendor_id: "123452"
+            vendor_id: vendorState.id
         }
         uploadTariffChart({
             variables: {
                 createTariffChartInput: tariffObj
             }
-        }).then(res=>console.log(res)).catch(err=>console.log(err));
+        }).then(res=>{
+            setTariffId(res.data.uploadTariffChart.id);
+            uploadVendorDetails();
+        }).catch(err=>console.log(err));
     }
 
     const handleSubmit = () => {
         console.log(vendorState);
         // uploadTariff();
-        // const base64logo = getBase64(vendorProfile.logo[0]);
-        // const updatedProfile = {
-        //     vendor_id: "",
-        //     name: vendorProfile.organisation,
-        //     phone_number: vendorProfile.phone,
-        //     email: vendorProfile.email,
-        //     service_cities: vendorProfile.operatingCities,
-        //     logo: base64logo,
-        //     tariff_chart_id: vendorProfile.tariffChart
-        // };
-        // console.log(updatedProfile);
-        // updateProfile({
-        //     variables: { 
-        //         updateVendorInput: updatedProfile
-        //     }
-        // }).then(res=>{
-        //     console.log(res);
-        // }).catch(err=>console.log(err));
+    };
+
+    const uploadVendorDetails = async () => {
+        const base64logo = await getBase64(vendorProfile.logo[0]);
+        const updatedProfile = {
+            vendor_id: vendorState.id,
+            name: vendorProfile.organisation,
+            phone_number: vendorProfile.phone,
+            email: vendorProfile.email,
+            service_cities: vendorProfile.operatingCities,
+            logo: base64logo,
+            tariff_chart_id: tariffId
+        };
+        console.log(updatedProfile);
+        updateProfile({
+            variables: { 
+                updateVendorInput: updatedProfile
+            }
+        }).then(res=>{
+            console.log(res);
+        }).catch(err=>console.log(err));
     };
 
     return(
