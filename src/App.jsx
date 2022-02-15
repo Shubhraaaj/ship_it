@@ -36,24 +36,6 @@ import Footer from './components/LandingPage/Footer/Footer';
  */
 
 function App() {
-
-  const errorLink = onError(({graphqlErrors, networkError}) => {
-      if(graphqlErrors){
-          graphqlErrors.map(({message, location, path})=>{
-              alert(`GraphQL error ${message}`);
-          });
-      }
-  });
-
-  const link = from([
-    errorLink,
-    new HttpLink({ uri: 'http://localhost:6969/graphql' })
-  ]);
-
-  const client = new ApolloClient({
-      cache: new InMemoryCache(),
-      link: link
-  });
   
   return (
       <HashRouter>

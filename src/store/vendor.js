@@ -14,7 +14,8 @@ const subject = new Subject();
 let initialState = {
     user_email: '',
     auth_token: '',
-    id: ''
+    id: '',
+    vendor_id: ''
 };
 
 let state = initialState;

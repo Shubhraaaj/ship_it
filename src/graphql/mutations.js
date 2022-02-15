@@ -19,6 +19,7 @@ export const SIGNIN_VENDOR = gql `
         id
         created_at
         updated_at
+        vendor_id
       }
     }`;
 

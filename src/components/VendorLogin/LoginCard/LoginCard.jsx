@@ -47,7 +47,8 @@ export default function LoginCard(){
             const vendorDetails = {
                 user_email: res.data.login.user_email,
                 auth_token: res.data.login.auth_token,
-                id: res.data.login.id
+                id: res.data.login.id,
+                vendor_id: res.data.login.vendor_id
             };
             vendorStore.setVendorDetails(vendorDetails);
             // vendorStore.clearVendorDetails();

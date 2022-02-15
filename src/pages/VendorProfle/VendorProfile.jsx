@@ -3,20 +3,36 @@ import DetailsCard from "../../components/VendorProfle/DetailsCard";
 import MultiSelect from "../../components/VendorProfle/MultiSelect/MultiSelect";
 import TariffChart from "../../components/VendorProfle/TariffChart/TariffChart";
 import MainMenu from "../../components/Elements/MainMenu/MainMenu";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { TARIFFCHART_UPLOAD, UPDATE_PROFILE } from "../../graphql/mutations";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import vendorStore from "../../store/vendor";
+import { GET_VENDOR_PROFILE } from "../../graphql/queries";
 
 
 export default function VendorProfile(){
 
     const [vendorProfile, setVendorProfile] = useState({});
-    const [updateProfile, { dataP, loadingP, errorP }] = useMutation(UPDATE_PROFILE);
-    const [uploadTariffChart, { data, loading, error }] = useMutation(TARIFFCHART_UPLOAD);
-
     const [vendorState, setVendorState] = useState(vendorStore.initialState);
-    const [tariffId, setTariffId] = useState("");
+
+    // API Mutations
+    const updateProfile = useMutation(UPDATE_PROFILE);
+    const uploadTariffChart = useMutation(TARIFFCHART_UPLOAD);
+
+    // API Queries
+    const { loading, error, data } = useQuery(GET_VENDOR_PROFILE, {
+        variables: {
+            id: vendorState.vendor_id
+        }
+    });
+
+    useEffect(()=>{
+        setVendorProfile({...vendorProfile, 
+            email: data?.getVendorProfile.email, 
+            name: data?.getVendorProfile.name, 
+            phone_number: data?.getVendorProfile.phone_number 
+        });
+    },[data]);
 
     useLayoutEffect(()=>{
         vendorStore.subscribe(setVendorState);
@@ -63,33 +79,32 @@ export default function VendorProfile(){
         const base64excel = await getBase64(vendorProfile.tariffChart[0]);
         const tariffObj = {
             tariff: base64excel,
-            vendor_id: vendorState.id
+            vendor_id: vendorState.vendor_id
         }
         uploadTariffChart({
             variables: {
                 createTariffChartInput: tariffObj
             }
         }).then(res=>{
-            setTariffId(res.data.uploadTariffChart.id);
-            uploadVendorDetails();
+            uploadVendorDetails(res.data.uploadTariffChart.id);
         }).catch(err=>console.log(err));
     }
 
     const handleSubmit = () => {
         console.log(vendorState);
-        // uploadTariff();
+        uploadTariff();
     };
 
-    const uploadVendorDetails = async () => {
+    const uploadVendorDetails = async (tariff_chart_id) => {
         const base64logo = await getBase64(vendorProfile.logo[0]);
         const updatedProfile = {
-            vendor_id: vendorState.id,
+            vendor_id: vendorState.vendor_id,
             name: vendorProfile.organisation,
             phone_number: vendorProfile.phone,
             email: vendorProfile.email,
             service_cities: vendorProfile.operatingCities,
             logo: base64logo,
-            tariff_chart_id: tariffId
+            tariff_chart_id: tariff_chart_id
         };
         console.log(updatedProfile);
         updateProfile({
@@ -110,7 +125,7 @@ export default function VendorProfile(){
                     <TariffChart className="flex-1" onUpdate={tariffChart} />
                 </div>
                 <div className="mx-20 mb-4">
-                    <DetailsCard  className="mx-auto" onUpdate={details} />
+                    <DetailsCard  className="mx-auto" onUpdate={details} profile={vendorProfile}/>
                     <button type="button" onClick={handleSubmit} className="bg-red-500 w-full my-8 py-3 rounded-xl text-white font-medium">SAVE DETAILS</button>
                 </div>
             </form>
