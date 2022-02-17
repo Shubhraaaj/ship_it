@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -25,7 +26,11 @@ export default function MainMenu({ isWhite }){
                     </div>
                 </div>
                 <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-12">
-                    <a href="#" className="font-medium text-gray-700 hover:gray-900">ABOUT</a>
+                    <motion.a
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        whileHover={{ scale: 1.2 }}
+                        className="font-medium text-gray-700 hover:gray-900">ABOUT</motion.a>
 
                     <a href="#" className="font-medium text-gray-700 hover:text-gray-900">TRACK PACKAGE</a>
 

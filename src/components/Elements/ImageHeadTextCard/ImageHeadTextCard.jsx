@@ -1,6 +1,12 @@
+import { motion } from "framer-motion";
+
 export default function ImageHeadTextCard({ title, description, imageurl }){
     return(
-        <div className="flex justify-center m-4">
+        <motion.div 
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.1 }}
+            className="flex justify-center m-4">
             <div className="rounded-lg shadow-lg bg-white max-w-sm">
                 <img className="h-24 mx-auto my-4" src={imageurl} alt=""/>
                 <div className="p-6">
@@ -8,7 +14,7 @@ export default function ImageHeadTextCard({ title, description, imageurl }){
                     <p className="text-gray-700 text-base">{description}</p>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

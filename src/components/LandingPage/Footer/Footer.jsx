@@ -1,10 +1,12 @@
+import { FaShippingFast } from "react-icons/fa";
+
 export default function Footer() {
     return(
         <footer className="text-center bg-gray-800 text-white">
             <div className="container px-6 py-20">
                 <div className="grid lg:grid-cols-3 md:grid-cols-2">
                     <div className="m-auto">
-                        <h1 className="text-2xl text-left font-bold"><span className="text-white">Shipit.</span></h1>
+                        <h1 className="text-2xl text-left font-bold"><FaShippingFast className="inline mr-4 mb-4 text-6xl"/><span className="text-white">Shipit.</span></h1>
                         <p className="text-sm">
                             <span className="font-light block text-left">India's biggest network of Courier Providers.</span>
                             <span className="font-light block text-left">Sec V, Salt Lake, Kolkata, West bengal - 700105</span>

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function OfficialPartners(){
@@ -10,11 +11,41 @@ export default function OfficialPartners(){
                     {/* {
                         images.forEach(url => <img className="h-8 w-auto mx-auto sm:h-10" src={url} />)
                     } */}
-                    <img className="h-40 mx-auto" src="https://i.ibb.co/DfYyFP1/Click-to-add-a-heading-2.jpg" />
-                    <img className="h-40 mx-auto" src="https://i.ibb.co/pw8Ymkg/Click-to-add-a-heading-3.jpg" />
-                    <img className="h-40 mx-auto" src="https://i.ibb.co/cXD62yg/Click-to-add-a-heading.jpg" />  
-                    <img className="h-40 mx-auto" src="https://i.ibb.co/2Mc59XR/Click-to-add-a-heading-4.jpg" />
-                    <img className="h-40 mx-auto" src="https://i.ibb.co/YW4zYdN/Click-to-add-a-heading-1.jpg" />
+                    <motion.img 
+                        className="h-40 mx-auto" 
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        whileHover={{ scale: 1.2 }}
+                        src="https://i.ibb.co/DfYyFP1/Click-to-add-a-heading-2.jpg" />
+                    <motion.img 
+                        className="h-40 mx-auto" 
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        whileHover={{ scale: 1.2 }}
+                        className="h-40 mx-auto" 
+                        src="https://i.ibb.co/pw8Ymkg/Click-to-add-a-heading-3.jpg" 
+                        />
+                    <motion.img 
+                        className="h-40 mx-auto" 
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        whileHover={{ scale: 1.1 }}
+                        className="h-40 mx-auto" 
+                        src="https://i.ibb.co/cXD62yg/Click-to-add-a-heading.jpg" />  
+                    <motion.img
+                        className="h-40 mx-auto" 
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        whileHover={{ scale: 1.2 }} 
+                        className="h-40 mx-auto" 
+                        src="https://i.ibb.co/2Mc59XR/Click-to-add-a-heading-4.jpg" />
+                    <motion.img 
+                        className="h-40 mx-auto" 
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        whileHover={{ scale: 1.2 }}
+                        className="h-40 mx-auto" 
+                        src="https://i.ibb.co/YW4zYdN/Click-to-add-a-heading-1.jpg" />
                 </div>
             </div>
         </div>

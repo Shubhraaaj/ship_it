@@ -1,7 +1,11 @@
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Refresh } from "../../Elements/Animation/Refresh";
 import MainMenu from "../../Elements/MainMenu/MainMenu";
 
 export default function HeroSection() {
+    const [count, setCount] = useState(0);
     return (
         <div>
             {/* <MainMenu /> */}
@@ -19,9 +23,17 @@ export default function HeroSection() {
                             </p>
                             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                                 <div className="rounded-md shadow">
-                                    <Link to='/search'><p href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-500 hover:bg-red-600 md:py-4 md:text-lg md:px-10">
-                                        I want to ship now
-                                    </p></Link>
+                                    <Link to='/search'>
+                                        <motion.p
+                                            initial={{ scale: 0.9, visibility:"hidden" }}
+                                            animate={{ scale: 1, visibility: "visible" }}
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            transition={{ duration: 0.2 }}
+                                            className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-500 hover:bg-red-600 md:py-4 md:text-lg md:px-10">
+                                            I want to ship now
+                                        </motion.p>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

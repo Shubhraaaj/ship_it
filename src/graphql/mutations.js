@@ -7,8 +7,6 @@ export const SIGNUP_VENDOR = gql `
         email
         phone_number
         password
-        created_at
-        updated_at
     }}`;
 
 export const SIGNIN_VENDOR = gql `
@@ -17,8 +15,6 @@ export const SIGNIN_VENDOR = gql `
         user_email
         auth_token
         id
-        created_at
-        updated_at
         vendor_id
       }
     }`;
@@ -34,8 +30,6 @@ export const UPDATE_PROFILE = gql `
         logo
         phone_number
         service_cities
-        created_at
-        updated_at
       }
   }`;
 
@@ -59,9 +53,14 @@ export const DELETE_VENDOR = gql `
         password
         logo
         phone_number
-        service_cities
-        created_at
-        updated_at      
+        service_cities   
     }
   }`;
 
+// export const 
+export const TARIFFCHART_UPDATE = gql `
+mutation updateTariffChart($createTariffChartInput:CreateTariffChartInput!){
+  updateTariffChart(createTariffChartInput:$createTariffChartInput){
+    id
+  }
+}`;

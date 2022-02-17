@@ -4,6 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { SIGNIN_VENDOR } from "../../../graphql/mutations";
 import vendorStore from "../../../store/vendor";
 
+/**
+ * TODO:-
+ * Initialise the appstore in Appstore
+ * UseContext Hook is Context api - Passes data in hierarchy
+ * 
+ */
+
 export default function LoginCard(){
     const [user, setUser] = useState({});
 

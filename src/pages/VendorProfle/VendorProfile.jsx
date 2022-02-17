@@ -4,7 +4,7 @@ import MultiSelect from "../../components/VendorProfle/MultiSelect/MultiSelect";
 import TariffChart from "../../components/VendorProfle/TariffChart/TariffChart";
 import MainMenu from "../../components/Elements/MainMenu/MainMenu";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { TARIFFCHART_UPLOAD, UPDATE_PROFILE } from "../../graphql/mutations";
+import { TARIFFCHART_UPDATE, TARIFFCHART_UPLOAD, UPDATE_PROFILE } from "../../graphql/mutations";
 import { useMutation, useQuery } from "@apollo/client";
 import vendorStore from "../../store/vendor";
 import { GET_VENDOR_PROFILE } from "../../graphql/queries";
@@ -16,8 +16,9 @@ export default function VendorProfile(){
     const [vendorState, setVendorState] = useState(vendorStore.initialState);
 
     // API Mutations
-    const updateProfile = useMutation(UPDATE_PROFILE);
-    const uploadTariffChart = useMutation(TARIFFCHART_UPLOAD);
+    const [updateProfile, {datas,loadings,errors}] = useMutation(UPDATE_PROFILE);
+    const [uploadTariffChart, {datat, loadingt, errort}] = useMutation(TARIFFCHART_UPLOAD);
+    const [updateTariffChart, {datac, loadingc, errorc}] = useMutation(TARIFFCHART_UPDATE);
 
     // API Queries
     const { loading, error, data } = useQuery(GET_VENDOR_PROFILE, {
@@ -90,12 +91,28 @@ export default function VendorProfile(){
         }).catch(err=>console.log(err));
     }
 
+    const updateTariff = async () => {
+        const base64excel = await getBase64(vendorProfile.tariffChart[0]);
+        const tariffObj = {
+            tariff: base64excel,
+            vendor_id: vendorState.vendor_id
+        }
+        updateTariffChart({
+            variables: {
+                createTariffChartInput: tariffObj
+            }
+        }).then(res=>{
+            const id = res.data.updateTariffChart.id;
+            uploadVendorDetails(id);
+        }).catch(err=>console.log(err));
+    }
+
     const handleSubmit = () => {
         console.log(vendorState);
-        uploadTariff();
+        updateTariff();
     };
 
-    const uploadVendorDetails = async (tariff_chart_id) => {
+    const uploadVendorDetails = async (id) => {
         const base64logo = await getBase64(vendorProfile.logo[0]);
         const updatedProfile = {
             vendor_id: vendorState.vendor_id,
@@ -103,8 +120,7 @@ export default function VendorProfile(){
             phone_number: vendorProfile.phone,
             email: vendorProfile.email,
             service_cities: vendorProfile.operatingCities,
-            logo: base64logo,
-            tariff_chart_id: tariff_chart_id
+            logo: base64logo
         };
         console.log(updatedProfile);
         updateProfile({
