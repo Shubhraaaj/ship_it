@@ -1,4 +1,4 @@
-export default function SelectStates(){
+export default function SelectStates( { handle } ){
     const states = [
         { label: "Andhra Pradesh", value: 1 },
         { label: "Arunachal Pradesh", value: 2 },
@@ -37,12 +37,21 @@ export default function SelectStates(){
         { label: "Lakshadweep", value: 35 },
         { label: "Puducherry", value: 36 }
     ];
+
+    const handleInput = (e) => {
+        const {name, value} = e.target;
+        handle(e);
+    };
+
     return(
         <select
-            className="mt-8 w-full form-control px-3 py-1.5 text-base font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
+        name="state"
+        defaultValue="Not selected"
+        onChange={handleInput}    
+        className="mt-8 w-full form-control px-3 py-1.5 text-base font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
             placeholder="Select State">
-                <option value="" disabled selected className="disabled:text-gray-400">Select State</option>
-                {states.map((state)=><option value={state.label}>{state.label}</option>)}
+                <option value="Not selected" disabled className="disabled:text-gray-400">Select State</option>
+                {states.map((state)=><option key={state.value} value={state.label}>{state.label}</option>)}
         </select>
     );
 }

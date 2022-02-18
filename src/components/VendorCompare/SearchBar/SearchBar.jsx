@@ -1,18 +1,15 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import searchStore from "../../../store/search";
 import SelectCity from "../../Elements/SelectCity/SelectCity";
 
 export default function SearchBar(){
     const [searchState, setSearchState] = useState(searchStore.initialState);
+
     useLayoutEffect(()=>{
         searchStore.subscribe(setSearchState);
         searchStore.init();
     },[]);
-
-    useEffect(()=>{
-        console.log(searchState);
-    },[searchState]);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -27,6 +24,10 @@ export default function SearchBar(){
                             break;
             default: break;
         }
+    };
+
+    const handleClick = () => {
+        searchStore.setSearch(searchState);
     };
     
     return(
@@ -49,8 +50,8 @@ export default function SearchBar(){
                     <option value="Furniture">Furniture</option>
                     <option value="Glass_items">Glass items</option>
                 </select>
-                <button type="button" className="flex-1 bg-red-500 hover:bg-red-600 rounded-xl font-medium text-white">
-                    <Link to='/fill_order'>SEARCH VENDORS</Link>
+                <button type="button" onClick={handleClick} className="flex-1 bg-red-500 hover:bg-red-600 rounded-xl font-medium text-white">
+                    SEARCH VENDORS
                 </button>
         </div>
     );
