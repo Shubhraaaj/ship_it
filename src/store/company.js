@@ -30,6 +30,10 @@ with our setState function.*/
 
 // we appended our message object to our state.data array, then we incremented our newDataCount
 
+// subscribe method to let me react to state changes
+// select method to let me react to a specific state key change
+// dispatchAsync method to update state asynchronously
+
 const companyStore = {
     init: () => {
     //   state = {...state, newDataCount: 0}

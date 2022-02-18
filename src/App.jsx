@@ -26,6 +26,9 @@ import { onError } from '@apollo/client/link/error';
 import Main from './Main';
 import MainMenu from './components/Elements/MainMenu/MainMenu';
 import Footer from './components/LandingPage/Footer/Footer';
+import { Loading } from './components/Elements/Animation/Loading';
+import LoadingPage from './components/Elements/Animation/LoadingPage';
+import { useState } from 'react';
 
 /* TODO
  * Setup Apollo client for the project
@@ -36,16 +39,20 @@ import Footer from './components/LandingPage/Footer/Footer';
  */
 
 function App() {
-  
-  return (
-      <HashRouter>
-          <div className='App'>
-              <MainMenu />
-                  <Main />
-              <Footer />
-          </div>
-      </HashRouter>
-  );
+    const [loading, setLoading] = useState(false);
+    return (
+        <HashRouter>
+            <div className='App'>
+                {loading?<LoadingPage />: 
+                    <div>
+                        <MainMenu />
+                        <Main />
+                        <Footer />
+                    </div>
+                }      
+            </div>
+        </HashRouter>
+    );
 }
 
 export default App;
