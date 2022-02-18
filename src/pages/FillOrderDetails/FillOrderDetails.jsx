@@ -64,14 +64,21 @@ export default function FillOrderDetails(){
             source: searchState.source,
             destination: searchState.destination
         };
-        orderStore.setOrder(createOrder, navigate(placeOrder));
+        orderStore.setOrder(createOrder);
+        navigate(placeOrder);
     };
 
     return(
         <div className="bg-red-50 pb-8 pt-4">
             {/* <MainMenu isWhite /> */}
-            <div className="py-8 px-12 mx-20 shadow-md bg-white rounded-xl">
-                <h3 className="text-xl text-center text-gray-900 font-medium">Please enter the Sender and Receiver Details</h3>
+            <div className={(priority?"bg-white":"bg-yellow-50") + " py-8 px-12 relative mx-20 shadow-md rounded-xl"}>
+                <div className="">
+                    <h3 className="text-xl flex-1 text-center text-gray-900 font-medium">Please enter the Sender and Receiver Details</h3>
+                </div>
+                <div className="absolute right-8 top-8">
+                    <Switch priority={priority} onChange={(prior)=>setPriority(prior)} />
+                </div>
+                <div className="h-0.5 w-80 bg-gray-200 rounded-xl mx-auto mt-4" />
                 <div className="flex flex-row mt-8">
                     <div className="mx-12">
                         <OrderDetails isSender onChange={handleSenderChanges} />
@@ -87,7 +94,6 @@ export default function FillOrderDetails(){
                             <p><span className="block text-gray-600 font-normal text-xl text-left">Final Bill</span><span className="text-left text-gray-600 block">(Incl. taxes)</span></p>
                             <span className="ml-4 text-2xl font-medium">Rs.{priority?companyState.priority_price:companyState.normal_price}.00</span>
                         </div>
-                        <Switch priority={priority} onChange={(prior)=>setPriority(prior)} />
                     </div>
                     <button onClick={handleSubmit} type="button" className="btn flex-1 w-full mx-auto mt-8 text-center btn-primary font-medium bg-red-500 hover:bg-red-600 rounded-xl text-white py-2">PLACE ORDER</button>
                 </div>

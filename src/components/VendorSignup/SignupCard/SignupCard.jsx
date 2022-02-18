@@ -37,7 +37,6 @@ export default function SignupCard(){
             phone_number:user.phone,
             password:user.password
         };
-        console.log(user);
         signup({
             variables: { 
                 vendorInput: vendorInput

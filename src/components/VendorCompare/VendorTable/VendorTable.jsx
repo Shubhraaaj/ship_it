@@ -58,7 +58,6 @@ export default function VendorTable(){
 
     const handleClick = (e) => {
         const name = e.target.name;
-        console.log(name);
         setAsc({ name:true });
     };
 
