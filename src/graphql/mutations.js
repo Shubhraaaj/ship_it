@@ -56,11 +56,39 @@ export const DELETE_VENDOR = gql `
         service_cities   
     }
   }`;
-
-// export const 
+ 
 export const TARIFFCHART_UPDATE = gql `
 mutation updateTariffChart($createTariffChartInput:CreateTariffChartInput!){
   updateTariffChart(createTariffChartInput:$createTariffChartInput){
     id
+  }
+}`;
+
+export const USER_OTP = gql `
+  mutation userLogin($userLoginInput: LoginUserInput!){
+    userLogin(userLoginInput: $userLoginInput){
+        email
+        otp
+      }
+    }`;
+
+export const CREATE_ORDER = gql `
+mutation CreateOrder($createOrderInput: CreateOrderInput!){
+  CreateOrder(createOrderInput: $createOrderInput){
+    vendor_id
+    sender
+    receiver
+    amount
+    weight
+    type
+    priority
+    weight_unit
+    source_city
+    destination_city
+    created_at
+    live_status
+    ordor_id
+    order_no
+    tracking_id
   }
 }`;

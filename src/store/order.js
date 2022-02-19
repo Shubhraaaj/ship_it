@@ -24,10 +24,12 @@ let initialState = {
     vendor_name: '',
     order_type: '',
     parcel_type: '',
-    id: '',
+    order_no: '',
     amount: '',
     source: '',
     destination: '',
+    date: '',
+    live_status: '',
 };
 
 let state = initialState;

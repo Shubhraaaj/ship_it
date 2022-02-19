@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SIGNIN_VENDOR } from "../../../graphql/mutations";
+import loadingStore from "../../../store/loading";
 import vendorStore from "../../../store/vendor";
 
 /**
@@ -13,17 +14,11 @@ import vendorStore from "../../../store/vendor";
 
 export default function LoginCard(){
     const [user, setUser] = useState({});
-
-    const [vendorState, setVendorState] = useState(vendorStore.initialState);
-
+    const [err, setErr] = useState("");
     const [login, { data, loading, error }] = useMutation(SIGNIN_VENDOR);
     const navigate = useNavigate();
     const profilePath = '/vendor_profile';
-    
-    // useLayoutEffect(()=>{
-    //     vendorStore.subscribe(setVendorState);
-    //     vendorStore.init();
-    // },[]);
+    const [load, setLoad] = useState(loadingStore.initialState);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,6 +37,7 @@ export default function LoginCard(){
     
 
     const handleSubmit = () =>{
+        loadingStore.setLoading({loading: true});
         const loginInput = {
             user_email:user.email,
             password:user.password
@@ -58,19 +54,20 @@ export default function LoginCard(){
                 vendor_id: res.data.login.vendor_id
             };
             vendorStore.setVendorDetails(vendorDetails);
-            // vendorStore.clearVendorDetails();
+            loadingStore.setLoading({loading: false});
             navigate(profilePath);
         }).catch(err=>{
-            console.log(err);
+            loadingStore.setLoading({loading: false});
+            setErr(err.message);
         });
     };
 
     return(
         <div className="rounded-lg shadow-lg bg-white max-w-sm p-12">
-            <h1 className="text-xl tracking-tight text-center font-medium text-gray-900 sm:text-5xl md:text-4xl">Login Now</h1>
-            {error?.length>0&&<p className="text-sm text-red-500">{error}</p>}
+            <h1 className="text-xl tracking-tight text-center mb-8 font-medium text-gray-900 sm:text-5xl md:text-4xl">Login Now</h1>
+            {err?.length>0&&<p className="text-sm text-red-500 ">{err}</p>}
             <form noValidate>
-                <input type="email" onBlur={handleChange} name="email" className="font-medium mx-auto mt-8 form-control block w-full px-4 py-3 text-base placeholder:font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your email" />
+                <input type="email" onBlur={handleChange} name="email" className="font-medium mx-auto mt-4 form-control block w-full px-4 py-3 text-base placeholder:font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your email" />
                 <input type="password" onBlur={handleChange} name="password" className="font-medium mx-auto my-6 form-control block w-full px-4 py-3 text-base placeholder:font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your password" />
                 <label className="block text-left mb-2 ml-2">
                     <input type="checkbox" className="w-4 h-4 border-red-200 align-middle"/>

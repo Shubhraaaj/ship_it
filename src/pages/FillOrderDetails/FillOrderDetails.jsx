@@ -1,9 +1,12 @@
+import { useMutation } from "@apollo/client";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MainMenu from "../../components/Elements/MainMenu/MainMenu";
 import Switch from "../../components/Elements/Switch/Switch";
 import OrderDetails from "../../components/FillOrderDetails/OrderDetails/OrderDetails";
+import { CREATE_ORDER } from "../../graphql/mutations";
 import companyStore from "../../store/company";
+import loadingStore from "../../store/loading";
 import orderStore from "../../store/order";
 import searchStore from "../../store/search";
 
@@ -16,6 +19,8 @@ export default function FillOrderDetails(){
     const placeOrder = '/order_details';
     const [senderDetails, setSenderDetails] = useState({});
     const [receiverDetails, setReceiverDetails] = useState({});
+
+    const [CreateOrder, {data, loading, error}] = useMutation(CREATE_ORDER);
 
     useLayoutEffect(()=>{
         // Company store subscribe
@@ -36,8 +41,9 @@ export default function FillOrderDetails(){
     };
 
     const handleSubmit = () => {
+        loadingStore.setLoading({loading: true});
         const createOrder = {
-            order_id: 'XXX',
+            // order_id: 'XXX',
             pickup: senderDetails.pickup,
             sender_details: {
                 name: senderDetails.name,
@@ -53,25 +59,65 @@ export default function FillOrderDetails(){
                 state: receiverDetails.state,
                 pincode: receiverDetails.pincode
             },
-            tracking_no: 'TTT',
-            vendor_id: companyState.vendor_id,
+            // tracking_no: 'TTT',
+            // vendor_id: companyState.vendor_id,
             vendor_name: companyState.name,
             order_type: priority?'Priority':'Normal',
             parcel_type: searchState.type,
             weight: searchState.weight,
-            id: 'III',
+            // id: 'III',
             amount: priority?companyState.priority_price:companyState.normal_price,
             source: searchState.source,
             destination: searchState.destination
         };
-        orderStore.setOrder(createOrder);
-        navigate(placeOrder);
+        const newOrder = {
+            sender: JSON.stringify({
+                name: senderDetails.name,
+                address: senderDetails.address,
+                phone: senderDetails.phone,
+                state: senderDetails.state,
+                pincode: senderDetails.pincode
+            }),
+            receiver: JSON.stringify({
+                name: receiverDetails.name,
+                address: receiverDetails.address,
+                phone: receiverDetails.phone,
+                state: receiverDetails.state,
+                pincode: receiverDetails.pincode
+            }),
+            pickup_date_time: senderDetails.pickup,
+            amount: priority?companyState.priority_price:companyState.normal_price,
+            vendor_id: '12f57c98-32d4-4370-8a81-0d2fd505076f',
+            // vendor_id: companyState.vendor_id,
+            weight: searchState.weight,
+            type: searchState.type,
+            priority: priority?'Priority':'Normal',
+            weight_unit: "Kgs",
+            destination_city: searchState.destination,
+            source_city: searchState.source,
+        };
+        CreateOrder({
+            variables: {
+                createOrderInput: newOrder
+            }
+        }).then(res=>{
+            const orderCreated = res.data.CreateOrder;
+            createOrder.order_id = orderCreated.ordor_id;
+            createOrder.order_no = orderCreated.order_no;
+            createOrder.tracking_no = orderCreated.tracking_id;
+            createOrder.vendor_id = orderCreated.vendor_id;
+            orderStore.setOrder(createOrder, navigate(placeOrder));
+        }).catch(err=>{
+            console.log(err);
+        }).finally(()=>{
+            loadingStore.setLoading({loading: false});
+        });
     };
 
     return(
         <div className="bg-red-50 pb-8 pt-4">
             {/* <MainMenu isWhite /> */}
-            <div className={(priority?"bg-white":"bg-yellow-50") + " py-8 px-12 relative mx-20 shadow-md rounded-xl"}>
+            <div className={(priority?"bg-slate-50":"bg-white") + " py-8 px-12 relative mx-20 shadow-md rounded-xl"}>
                 <div className="">
                     <h3 className="text-xl flex-1 text-center text-gray-900 font-medium">Please enter the Sender and Receiver Details</h3>
                 </div>

@@ -14,11 +14,11 @@ export default function OrderDetailsCard( { orderDetails }){
     };
     
     return (
-        <div className="rounded-2xl shadow-lg bg-white max-w-md px-12 py-6">
+        <div className="rounded-2xl shadow-lg bg-white px-12 py-6">
             <h3 className="text-red-500 text-2xl font-medium text-left mb-8">Order Details</h3>
-            <TitleText title="Order ID" text={orderDetails?.order_id}/>
+            <TitleText title="Order ID" text={orderDetails?.order_no.toUpperCase()}/>
             <TitleText title="Vendor" text={orderDetails?.vendor_name}/>
-            <TitleText title="Tracking Number" text={orderDetails?.tracking_no}/>
+            <TitleText title="Tracking Number" text={orderDetails?.tracking_no.toUpperCase()}/>
             <TitleText title="Order Type" text={orderDetails?.order_type}/>
             <TitleText title="Package Details" text={orderDetails?.parcel_type}/>
             <TitleText title="Sender Details" text={senderDetails} small/>

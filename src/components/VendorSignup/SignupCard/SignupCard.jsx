@@ -1,6 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { SIGNUP_VENDOR } from "../../../graphql/mutations";
+import { useNavigate } from "react-router-dom";
+import { SIGNIN_VENDOR, SIGNUP_VENDOR } from "../../../graphql/mutations";
+import loadingStore from "../../../store/loading";
+import vendorStore from "../../../store/vendor";
 import { minMaxLength, passwordStrength, userExists, validateConfirmPassword, validEmail } from "../../../utils/FormValidatins";
 
 /**TODO
@@ -13,7 +16,14 @@ import { minMaxLength, passwordStrength, userExists, validateConfirmPassword, va
 export default function SignupCard(){
     const [user, setUser] = useState({});
     const [formErrors, setFormErrors] = useState({});
+    const navigate = useNavigate();
+    const profilePath = '/vendor_profile';
     const [signup, { data, loading, error }] = useMutation(SIGNUP_VENDOR);
+    const [login, { datas, loadings, errors }] = useMutation(SIGNIN_VENDOR);
+
+    const [err, setErr] = useState("");
+
+    const [load, setLoad] = useState(loadingStore.initialState);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -85,6 +95,7 @@ export default function SignupCard(){
 
 
     const handleSubmit = () =>{
+        loadingStore.setLoading({loading: true});
         const vendorInput = {
             name:user.name,
             email:user.email,
@@ -95,14 +106,47 @@ export default function SignupCard(){
             variables: { 
                 vendorInput: vendorInput
             }
-        }).then(res=>console.log(res)).catch(err=>console.log(err));
+        }).then(res=>{
+            setErr(res.message);
+            loginUser();
+        }).catch(err=>{
+            loadingStore.setLoading({loading: false});
+            setErr(err.message);
+        });
+    };
+
+    const loginUser = () =>{
+        console.log("LOGIN");
+        const loginInput = {
+            user_email:user.email,
+            password:user.password
+        };
+        login({
+            variables: { 
+                loginInput: loginInput
+            }
+        }).then(res=>{
+            const vendorDetails = {
+                user_email: res.data.login.user_email,
+                auth_token: res.data.login.auth_token,
+                id: res.data.login.id,
+                vendor_id: res.data.login.vendor_id
+            };
+            vendorStore.setVendorDetails(vendorDetails);
+            loadingStore.setLoading({loading: false});
+            navigate(profilePath);
+        }).catch(err=>{
+            setErr(err.message);
+            loadingStore.setLoading({loading: false});
+        });
     };
 
     return(
         <div className="rounded-lg shadow-lg bg-white max-w-sm px-12 py-8">
             <h1 className="text-4xl tracking-tight font-medium text-center text-gray-900 sm:text-5xl md:text-3xl">Create Account</h1>
+            {err?.length>0 && <p className="text-sm text-red-500 mt-2">{err}</p>}
             <ul className="my-2">
-                {Object.entries(formErrors || {}).map(([prop, value]) => {
+                {Object.entries(formErrors||{}).map(([prop, value]) => {
                     return (
                     <li className='text-sm text-left text-red-500' key={prop}>
                         {value}
@@ -163,7 +207,7 @@ export default function SignupCard(){
                 </label>
                 <button 
                     type="button"
-                    disabled={Object.entries(formErrors||{}).length > 0}
+                    disabled={(Object.entries(formErrors||{}).length>0)}
                     onClick={handleSubmit} 
                     className="btn btn-primary font-medium disabled:bg-gray-400 bg-red-500 text-white w-full rounded-3xl py-3"
                     >

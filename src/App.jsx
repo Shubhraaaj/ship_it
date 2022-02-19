@@ -28,7 +28,8 @@ import MainMenu from './components/Elements/MainMenu/MainMenu';
 import Footer from './components/LandingPage/Footer/Footer';
 import { Loading } from './components/Elements/Animation/Loading';
 import LoadingPage from './components/Elements/Animation/LoadingPage';
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
+import loadingStore from './store/loading';
 
 /* TODO
  * Setup Apollo client for the project
@@ -39,17 +40,22 @@ import { useState } from 'react';
  */
 
 function App() {
-    const [loading, setLoading] = useState(false);
+    const [load, setLoad] = useState(loadingStore.initialState);
+    
+    useLayoutEffect(()=>{
+        loadingStore.subscribe(setLoad);
+        loadingStore.init();
+    },[]);
+
     return (
         <HashRouter>
             <div className='App'>
-                {loading?<LoadingPage />: 
-                    <div>
-                        <MainMenu />
-                        <Main />
-                        <Footer />
-                    </div>
-                }      
+                {load.loading && <LoadingPage />} 
+                <div className={load.loading?"hidden":""}>
+                    <MainMenu />
+                    <Main />
+                    <Footer />
+                </div>
             </div>
         </HashRouter>
     );
