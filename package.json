@@ -17,8 +17,8 @@
     "react-scripts": "5.0.0",
     "react-select": "^5.2.2",
     "recharts": "^2.1.9",
-    "rxjs-observable-store": "^3.1.0",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zxcvbn": "^4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",

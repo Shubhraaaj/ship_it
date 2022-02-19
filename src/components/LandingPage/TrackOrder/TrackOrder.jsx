@@ -10,8 +10,9 @@ export default function TrackOrder(){
             </div>
             <div className="flex justify-center mt-8">
                 <input 
-                    type="text" 
-                    className="form-control block w-2/5 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none shadow-md m-2" id="exampleFormControlInput1" 
+                    type="text"
+                    maxLength="14"
+                    className="uppercase form-control block w-2/5 pl-6 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-xl transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none shadow-md m-2" id="exampleFormControlInput1" 
                     placeholder="Tracking number" />
                 <Link to="/user_auth">
                     <motion.button 

@@ -34,7 +34,7 @@ export default function VendorLogin(){
     return(
         <>
             {loading&& <Loading />}
-            {!loading && <div className="flex flex-col h-1/2 bg-red-50">
+            {!loading && <div className="flex flex-col bg-red-50">
                 <div className="grid grid-cols-2 my-8">
                     <div className="flex flex-col mx-36 my-auto">
                         <LeftTextwBtn 
@@ -43,7 +43,7 @@ export default function VendorLogin(){
                             button="Learn more"
                         />
                     </div>
-                    <div className="mx-20 mb-4">
+                    <div className="mx-24 mb-8">
                         <LoginCard /> 
                     </div>
                 </div>  
