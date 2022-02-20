@@ -5,7 +5,7 @@ import TariffChart from "../../components/VendorProfle/TariffChart/TariffChart";
 import MainMenu from "../../components/Elements/MainMenu/MainMenu";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { TARIFFCHART_UPDATE, TARIFFCHART_UPLOAD, UPDATE_PROFILE } from "../../graphql/mutations";
-import { useMutation, useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import vendorStore from "../../store/vendor";
 import { GET_VENDOR_PROFILE } from "../../graphql/queries";
 
@@ -21,19 +21,31 @@ export default function VendorProfile(){
     const [updateTariffChart, {datac, loadingc, errorc}] = useMutation(TARIFFCHART_UPDATE);
 
     // API Queries
-    const { loading, error, data } = useQuery(GET_VENDOR_PROFILE, {
+    const [getVendorProfile, { loading, error, data }] = useLazyQuery(GET_VENDOR_PROFILE, {
         variables: {
             id: vendorState.vendor_id
         }
     });
 
     useEffect(()=>{
-        setVendorProfile({...vendorProfile, 
-            email: data?.getVendorProfile.email, 
-            name: data?.getVendorProfile.name, 
-            phone_number: data?.getVendorProfile.phone_number 
-        });
-    },[data]);
+        getVendorProfile().then(res=>{
+            console.log('profile', res.data.getVendorProfile);
+            const vendor = res?.data?.getVendorProfile;
+            if(vendor!==null)
+            {
+                setVendorProfile({
+                    name: vendor?.name,
+                    email: vendor?.email,
+                    phone_number: vendor?.phone_number,
+                    address: vendor?.address,
+                    website: vendor?.website,
+                    tariff_chart_id: vendor?.tariff_chart_id,
+                    logo: vendor?.logo,
+                    service_cities: vendor?.service_cities
+                });
+            }
+        }).catch(err=>console.log(err));
+    },[vendorState]);
 
     useLayoutEffect(()=>{
         vendorStore.subscribe(setVendorState);
@@ -42,23 +54,23 @@ export default function VendorProfile(){
 
     const [image, setImage] = useState();
     const logoChange = (value) => {
-        setVendorProfile({ ...vendorProfile, logo: value });
+        setVendorProfile({ ...vendorProfile, logo: value[0] });
     };
 
     const tariffChart = (value) => {
-        setVendorProfile({ ...vendorProfile, tariffChart: value });
+        setVendorProfile({ ...vendorProfile, tariff_chart_id: value[0] });
     };
 
     const operatingCities = (value) => {
-        setVendorProfile({ ...vendorProfile, operatingCities: value.map((city)=>city.label) });
+        setVendorProfile({ ...vendorProfile, service_cities: value.map((city)=>city.label) });
     };
 
     const details = (value) => {
         setVendorProfile({ ...vendorProfile, 
             address: value.address, 
             email: value.email, 
-            organisation: value.organisation, 
-            phone: value.phone, 
+            name: value.name, 
+            phone_number: value.phone_number, 
             website: value.website
         });
     };
@@ -77,7 +89,7 @@ export default function VendorProfile(){
     };
 
     const uploadTariff = async () => {
-        const base64excel = await getBase64(vendorProfile.tariffChart[0]);
+        const base64excel = await getBase64(vendorProfile.tariff_chart_id);
         const tariffObj = {
             tariff: base64excel,
             vendor_id: vendorState.vendor_id
@@ -92,7 +104,8 @@ export default function VendorProfile(){
     }
 
     const updateTariff = async () => {
-        const base64excel = await getBase64(vendorProfile.tariffChart[0]);
+        const base64excel = await getBase64(vendorProfile.tariff_chart_id);
+        console.log(base64excel);
         const tariffObj = {
             tariff: base64excel,
             vendor_id: vendorState.vendor_id
@@ -108,21 +121,26 @@ export default function VendorProfile(){
     }
 
     const handleSubmit = () => {
-        console.log(vendorState);
-        updateTariff();
+        // console.log('test', data.getVendorProfile.tariff_chart_id==="");
+        console.log('data', data);
+        console.log('vendor', vendorProfile);
+        // if(data.getVendorProfile.tariff_chart_id==="")
+        //     uploadTariff();
+        // else
+            updateTariff();
     };
 
     const uploadVendorDetails = async (id) => {
-        const base64logo = await getBase64(vendorProfile.logo[0]);
+        const base64logo = await getBase64(vendorProfile.logo);
         const updatedProfile = {
             vendor_id: vendorState.vendor_id,
-            name: vendorProfile.organisation,
-            phone_number: vendorProfile.phone,
+            name: vendorProfile.name,
+            phone_number: vendorProfile.phone_number,
             email: vendorProfile.email,
-            service_cities: vendorProfile.operatingCities,
-            logo: base64logo
+            service_cities: vendorProfile.service_cities,
+            logo: base64logo,
+            tariff_chart_id: id
         };
-        console.log(updatedProfile);
         updateProfile({
             variables: { 
                 updateVendorInput: updatedProfile
@@ -136,9 +154,9 @@ export default function VendorProfile(){
         <div className="flex flex-col h-1/2 bg-red-50">
             <form noValidate className="grid grid-cols-2 my-8">
                 <div className="flex flex-col mx-20 ">
-                    <ImageUpload className="flex-1" onUpdate={logoChange} />
-                    <MultiSelect className="flex-1" onUpdate={operatingCities} />
-                    <TariffChart className="flex-1" onUpdate={tariffChart} />
+                    <ImageUpload className="flex-1" image={vendorProfile?.logo} onUpdate={logoChange} />
+                    <MultiSelect className="flex-1"  service_cities={vendorProfile?.service_cities} onUpdate={operatingCities} />
+                    <TariffChart className="flex-1" chart={vendorProfile?.tariff_chart_id} onUpdate={tariffChart} />
                 </div>
                 <div className="mx-20 mb-4">
                     <DetailsCard  className="mx-auto" onUpdate={details} profile={vendorProfile}/>

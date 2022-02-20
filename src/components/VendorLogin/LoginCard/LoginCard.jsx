@@ -1,5 +1,5 @@
-import { useMutation, useQuery } from "@apollo/client";
-import { useLayoutEffect, useState } from "react";
+import { useMutation } from "@apollo/client";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SIGNIN_VENDOR } from "../../../graphql/mutations";
 import loadingStore from "../../../store/loading";
@@ -18,7 +18,6 @@ export default function LoginCard(){
     const [login, { data, loading, error }] = useMutation(SIGNIN_VENDOR);
     const navigate = useNavigate();
     const profilePath = '/vendor_profile';
-    const [load, setLoad] = useState(loadingStore.initialState);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

@@ -12,12 +12,22 @@ export default function OrderDetails(){
         orderStore.subscribe(setOrderState);
         orderStore.init();
     },[]);
+
+    const convertTime = (time) => {
+        try{
+            return(format(new Date(time), 'hh:mm a EEEE, dd/MM/yyyy'));
+        }
+        catch(error){
+            return(time);
+        }
+    };
+
     const text=`Your Package will be picked up by
-    ${format(new Date(orderState.pickup), 'EEEE, dd/MM/yyyy hh:mm a')}. 
-    You can track the current status of
-    your order via the Tracking ID. 
-    Thank you.
-    Happy Shipping!`;
+        ${convertTime(orderState.pickup)}.
+        You can track the current status of
+        your order via the Tracking ID. 
+        Thank you.
+        Happy Shipping!`;
     return(
         <div className="flex flex-col h-1/2 bg-red-50">
             {/* <MainMenu /> */}

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function ImageUpload({ onUpdate }){
+export default function ImageUpload({ image, onUpdate }){
     const [images, setImages] = useState([]);
-    const [imageURLs, setImageURLs] = useState(["https://i.ibb.co/qyxLRfq/Shipit-logo-upload-1.jpg"]);
+    const [imageURLs, setImageURLs] = useState(image?.length>0?[image]:["https://i.ibb.co/qyxLRfq/Shipit-logo-upload-1.jpg"]);
     const fileInput = useRef(null);
 
     const handleClick = () => {

@@ -6,6 +6,12 @@ export const GET_VENDOR_PROFILE = gql `
       name
       email
       phone_number
+      logo
+      vendor_id
+      tariff_chart_id
+      service_cities
+      address
+      website
     }
   }`;
 
@@ -17,3 +23,17 @@ export const VERIFY_OTP = gql `
       otp
     }
   }`;
+
+export const FETCH_ORDERS = gql `
+  query getOrders($status:String!){
+    getOrders(status:$status){
+      order_id
+      source_city
+      destination_city
+      type
+      amount
+      priority
+      order_status
+    }
+  }
+`;

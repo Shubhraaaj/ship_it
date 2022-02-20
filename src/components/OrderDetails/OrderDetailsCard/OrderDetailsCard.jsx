@@ -16,7 +16,12 @@ export default function OrderDetailsCard( { orderDetails }){
     return (
         <div className="rounded-2xl shadow-lg bg-white px-12 py-6">
             <h3 className="text-red-500 text-2xl font-medium text-left mb-8">Order Details</h3>
+            {/* <div className="flex justify-between">
+                <h3 className="text-red-500 text-2xl font-medium text-left mb-8">Order Details</h3>
+                <h4 className="text-red-500 text-xl font-medium text-left mb-8">₹4000.00</h4>
+            </div> */}
             <TitleText title="Order ID" text={orderDetails?.order_no.toUpperCase()}/>
+            <TitleText title="Bill" text={"₹"+orderDetails?.amount+".00"}/>
             <TitleText title="Vendor" text={orderDetails?.vendor_name}/>
             <TitleText title="Tracking Number" text={orderDetails?.tracking_no.toUpperCase()}/>
             <TitleText title="Order Type" text={orderDetails?.order_type}/>

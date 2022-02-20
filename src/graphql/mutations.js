@@ -28,6 +28,7 @@ export const UPDATE_PROFILE = gql `
         email
         password
         logo
+        tariff_chart_id
         phone_number
         service_cities
       }
@@ -87,7 +88,7 @@ mutation CreateOrder($createOrderInput: CreateOrderInput!){
     destination_city
     created_at
     live_status
-    ordor_id
+    order_id
     order_no
     tracking_id
   }

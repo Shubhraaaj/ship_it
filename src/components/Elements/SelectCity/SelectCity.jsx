@@ -1,26 +1,15 @@
 export default function SelectCity({ name, isSource, value, onChange, autoFocus }){
     const cities = [
-        "Agra",
         "Delhi",
-        "Gurgaon",
-        "Amritsar",
         "Chandigarh",
-        "Dhanbad",
-        "Ranchi",
-        "Patna",
-        "Gaya",
-        "Mumbai",
-        "Bangalore",
-        "Hyderabad",
         "Jaipur",
-        "Udaipur",
+        "Manali",
+        "Mumbai",
+        "Hydrabad",
+        "Chennai",
         "Kolkata",
-        "Raipur",
-        "Bhubaneshwar",
-        "Rourkela",
-        "Dehradun",
-        "Haridwar",
-        "Mysore"
+        "Lucknow",
+        "Indore",
     ];
     return(
         <select
