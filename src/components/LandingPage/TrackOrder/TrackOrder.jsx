@@ -10,32 +10,22 @@ export default function TrackOrder(){
     const handleClick = () => {
         let initialState = {
             order_id: '',
-            pickup: '',
-            sender_details: {
-                name: '',
-                address: '',
-                phone: '',
-                state: '',
-                pincode: ''
-            },
-            receiver_details: {
-                name: '',
-                address: '',
-                phone: '',
-                state: '',
-                pincode: ''
-            },
-            tracking_no: tracking,
+            pickup_date_time: '',
+            sender: '',
+            receiver: '',
+            tracking_id: tracking,
             vendor_id: '',
-            vendor_name: '',
-            order_type: '',
-            parcel_type: '',
+            name: '',
+            priority: '',
+            type: '',
             order_no: '',
             amount: '',
-            source: '',
-            destination: '',
-            date: '',
+            source_city: '',
+            destination_city: '',
             live_status: '',
+            order_status: '',
+            weight: '',
+            weight_unit: ''
         };
         orderStore.setOrder(initialState, navigate(authPage));
     };

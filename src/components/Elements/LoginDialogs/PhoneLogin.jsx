@@ -68,9 +68,28 @@ export default function PhoneLogin(){
 
     const [trackOrderByTrackId, {datat, loadingt, errort}] = useLazyQuery(FETCH_ORDER_BY_TID, {
         variables: {
-            id: order.tracking_no
+            id: order.tracking_id
         }
     });
+
+    useEffect(()=>{
+        console.log('OTP VIEW');
+        if(floatOtp.length===6){
+            verifyOtp().then(res => {
+                if(res!==undefined&&res?.data!==null){
+                    fetchOrder();
+                }else{
+                    setErr("Invalid OTP");
+                }
+            }).catch((errors)=>{
+                setErr(errors.message);
+            }).finally(()=>{
+                loadingStore.setLoading({loading: false});
+            });
+        }
+        else
+            loadingStore.setLoading({loading: false});
+    },[floatOtp]);
 
     const handleOtp = (e) => {
         const {name, value} = e.target;
@@ -92,6 +111,7 @@ export default function PhoneLogin(){
     };
 
     const handleButtonClick = () => {
+        console.log('button_clicked', otpView);
         loadingStore.setLoading({loading: true});
         if(!otpView){
             const emailInput = {
@@ -116,60 +136,21 @@ export default function PhoneLogin(){
             for(const [key, value] of Object.entries(otp)){
                 x=x.concat(value);
             }
-            setFloatOtp(x,
-                verifyOtp().then((res)=>{
-                    console.log('res',res?.data?.verifyUserOtp);
-                    if(res?.id!==null){ 
-                        fetchOrder();
-                    }else{
-                        setErr("Failed to process");
-                    }
-                }).catch((err)=>{
-                    console.log('err',err);
-                    setErr(err.message);
-                }).finally(()=>{
-                    loadingStore.setLoading({loading: false});
-                })
-            );
+            console.log('changed', x);
+            setFloatOtp(x);
         }
     };
 
     const fetchOrder = () =>{
         trackOrderByTrackId().then(res=>{
             const ord = res.data.trackOrderByTrackId;
-            const sender = JSON.parse(ord.sender);
-            const receiver = JSON.parse(ord.receiver);
             const trackingPath = '/order_tracking';
-            let orderUpdate = {
-                order_id: ord.order_id,
-                pickup: ord.pickup_date_time,
-                sender_details: {
-                    name: sender.name,
-                    address: sender.address,
-                    phone: sender.phone,
-                    state: sender.state,
-                    pincode: sender.pincode
-                },
-                receiver_details: {
-                    name: receiver.name,
-                    address: receiver.address,
-                    phone: receiver.phone,
-                    state: receiver.state,
-                    pincode: receiver.pincode
-                },
-                tracking_no: ord.tracking_id,
-                vendor_id: ord.vendor_id,
-                vendor_name: '',
-                order_type: ord.priority,
-                parcel_type: ord.type,
-                order_no: ord.order_no,
-                amount: ord.amount,
-                source: ord.source_city,
-                destination: ord.destination_city,
-                live_status: ord.live_status,
-            };
-            orderStore.setOrder(orderUpdate, navigate(trackingPath));
-        })
+            orderStore.setOrder(ord, navigate(trackingPath));
+        }).catch(err=>{
+            setErr(err.message);
+        }).finally(()=>{
+            loadingStore.setLoading({loading: false});
+        });
     };
 
     return(
@@ -187,7 +168,7 @@ export default function PhoneLogin(){
                     <input onBlur={handleOtp} className="m-2 border h-10 w-10 text-center form-control rounded" type="text" id="sixth" name="sixth" maxLength="1" /> 
                 </div>
                 {otpView && <div className="flex justify-center text-center mt-5"> <a className="flex items-center text-red-400 hover:text-red-600 cursor-pointer"><span className="font-bold">Resend OTP</span><i className='bx bx-caret-right ml-1'></i></a> </div>}
-                <button type="submit" className="btn btn-primary bg-red-500 w-full rounded-3xl font-medium text-white py-3 mt-8" onClick={handleButtonClick}>{otpView?otpText.button:loginText.button}</button>
+                <button type="button" className="btn btn-primary bg-red-500 w-full rounded-3xl font-medium text-white py-3 mt-8" onClick={handleButtonClick}>{otpView?otpText.button:loginText.button}</button>
             </div>
         </div>
     );
