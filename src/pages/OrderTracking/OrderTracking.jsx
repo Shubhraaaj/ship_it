@@ -22,9 +22,9 @@ export default function OrderTracking(){
             </div>
             <div className="flex mx-20 space-x-8 mb-20 mt-8">
                 <div className="flex-1">
-                    <LiveStatus />
+                    <LiveStatus orderDetails={orderState}/>
                 </div>
-                <div className="">
+                <div className="flex-1">
                     <OrderDetailsCard orderDetails={orderState}/>
                 </div>
             </div>
