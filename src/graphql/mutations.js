@@ -91,5 +91,6 @@ mutation CreateOrder($createOrderInput: CreateOrderInput!){
     order_id
     order_no
     tracking_id
+    order_status
   }
 }`;

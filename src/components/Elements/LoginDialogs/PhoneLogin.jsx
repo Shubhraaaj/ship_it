@@ -1,9 +1,10 @@
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { USER_OTP } from "../../../graphql/mutations";
-import { VERIFY_OTP } from "../../../graphql/queries";
+import { FETCH_ORDER_BY_TID, VERIFY_OTP } from "../../../graphql/queries";
 import loadingStore from "../../../store/loading";
+import orderStore from "../../../store/order";
 
 // OTP input autoshift
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -39,6 +40,13 @@ export default function PhoneLogin(){
     const [err, setErr] = useState("");
     const [ userLogin, {data, loading, error}] = useMutation(USER_OTP);
 
+    const [order, setOrder] = useState(orderStore.initialState);
+
+    useLayoutEffect(()=>{
+        orderStore.subscribe(setOrder);
+        orderStore.init();
+    },[]);
+
     const loginText = {
         heading: "Please enter your Email",
         placeholder: "Email ID",
@@ -55,6 +63,12 @@ export default function PhoneLogin(){
         variables: {
             otp: parseFloat(floatOtp),
             email: email
+        }
+    });
+
+    const [trackOrderByTrackId, {datat, loadingt, errort}] = useLazyQuery(FETCH_ORDER_BY_TID, {
+        variables: {
+            id: order.tracking_no
         }
     });
 
@@ -106,8 +120,7 @@ export default function PhoneLogin(){
                 verifyOtp().then((res)=>{
                     console.log('res',res?.data?.verifyUserOtp);
                     if(res?.id!==null){ 
-                        const trackingPath = '/order_tracking';
-                        navigate(trackingPath);
+                        fetchOrder();
                     }else{
                         setErr("Failed to process");
                     }
@@ -119,6 +132,44 @@ export default function PhoneLogin(){
                 })
             );
         }
+    };
+
+    const fetchOrder = () =>{
+        trackOrderByTrackId().then(res=>{
+            const ord = res.data.trackOrderByTrackId;
+            const sender = JSON.parse(ord.sender);
+            const receiver = JSON.parse(ord.receiver);
+            const trackingPath = '/order_tracking';
+            let orderUpdate = {
+                order_id: ord.order_id,
+                pickup: ord.pickup_date_time,
+                sender_details: {
+                    name: sender.name,
+                    address: sender.address,
+                    phone: sender.phone,
+                    state: sender.state,
+                    pincode: sender.pincode
+                },
+                receiver_details: {
+                    name: receiver.name,
+                    address: receiver.address,
+                    phone: receiver.phone,
+                    state: receiver.state,
+                    pincode: receiver.pincode
+                },
+                tracking_no: ord.tracking_id,
+                vendor_id: ord.vendor_id,
+                vendor_name: '',
+                order_type: ord.priority,
+                parcel_type: ord.type,
+                order_no: ord.order_no,
+                amount: ord.amount,
+                source: ord.source_city,
+                destination: ord.destination_city,
+                live_status: ord.live_status,
+            };
+            orderStore.setOrder(orderUpdate, navigate(trackingPath));
+        })
     };
 
     return(

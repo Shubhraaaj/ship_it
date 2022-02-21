@@ -29,7 +29,6 @@ export default function VendorProfile(){
 
     useEffect(()=>{
         getVendorProfile().then(res=>{
-            console.log('profile', res.data.getVendorProfile);
             const vendor = res?.data?.getVendorProfile;
             if(vendor!==null)
             {
@@ -66,6 +65,7 @@ export default function VendorProfile(){
     };
 
     const details = (value) => {
+        console.log('text update',value);
         setVendorProfile({ ...vendorProfile, 
             address: value.address, 
             email: value.email, 
@@ -120,14 +120,14 @@ export default function VendorProfile(){
         }).catch(err=>console.log(err));
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
         // console.log('test', data.getVendorProfile.tariff_chart_id==="");
         console.log('data', data);
         console.log('vendor', vendorProfile);
         // if(data.getVendorProfile.tariff_chart_id==="")
         //     uploadTariff();
         // else
-            updateTariff();
+        // updateTariff();
     };
 
     const uploadVendorDetails = async (id) => {

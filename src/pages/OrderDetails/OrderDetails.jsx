@@ -23,7 +23,7 @@ export default function OrderDetails(){
     };
 
     const text=`Your Package will be picked up by
-        ${convertTime(orderState.pickup)}.
+        ${convertTime(orderState.pickup_date_time)}.
         You can track the current status of
         your order via the Tracking ID. 
         Thank you.
