@@ -4,8 +4,26 @@ import makeAnimated from 'react-select/animated';
 
 export default function MultiSelect({ service_cities, onUpdate }){
     const animatedComponents = makeAnimated();
+    
+    const [selected, setSelected] = useState([]);
 
-    const [selected, setSelected] = useState(service_cities);
+    useEffect(()=>{
+        if(service_cities?.length>0&&service_cities!==undefined)
+        {
+            const vals = service_cities.map(city=>city.toLowerCase());
+            let fullState = [];
+            for(let i in service_cities){
+                let mem = {
+                    label: service_cities[i], 
+                    value: vals[i]
+                };
+                fullState=[...fullState, mem];
+                if(fullState.length===service_cities.length){
+                    setSelected(fullState);
+                }
+            }
+        }
+    },[service_cities]);
 
     const cities = [
         { label: "Delhi", value: "delhi" },
@@ -13,7 +31,7 @@ export default function MultiSelect({ service_cities, onUpdate }){
         { label: "Jaipur", value: "jaipur" },
         { label: "Manali", value: "manali" },
         { label: "Mumbai", value: "mumbai" },
-        { label: "Hydrabad", value: "hyderabad" },
+        { label: "Hyderabad", value: "hyderabad" },
         { label: "Chennai", value: "chennai" },
         { label: "Kolkata", value: "kolkata" },
         { label: "Lucknow", value: "lucknow" },
@@ -31,7 +49,7 @@ export default function MultiSelect({ service_cities, onUpdate }){
             <Select 
                 isMulti 
                 options={cities} 
-                defaultValue={selected} 
+                value={selected}
                 components={animatedComponents}
                 onChange={(val)=>handleChange(val)}
                 />

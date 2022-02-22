@@ -10,7 +10,7 @@ export default function ContactDetails(){
                 whileHover={{ scale: 1.1 }}
                 className='flex justify-center'>
                 <img className="w-8" src="https://i.ibb.co/VDTPfLf/phone-1.png"/>
-                <a className='ml-4 font-medium text-lg text-red-400'>+91-860-386-2085</a>
+                <a href="tel:+91-860-386-2085" className='ml-4 font-medium text-lg text-red-400'>+91-860-386-2085</a>
             </motion.div>
             <motion.div 
                 initial={{ scale: 0.9 }}
@@ -18,7 +18,7 @@ export default function ContactDetails(){
                 whileHover={{ scale: 1.1 }}
                 className='flex justify-center'>
                 <img className="w-8" src="https://i.ibb.co/f9t7YRj/email.png"/>
-                <a className='ml-4 font-medium text-lg text-red-400'>care@shipit.com</a>
+                <a href="mailto:care@shipit.com" className='ml-4 font-medium text-lg text-red-400'>care@shipit.com</a>
             </motion.div>
         </div>
     );

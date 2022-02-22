@@ -65,7 +65,6 @@ export default function VendorProfile(){
     };
 
     const details = (value) => {
-        console.log('text update',value);
         setVendorProfile({ ...vendorProfile, 
             address: value.address, 
             email: value.email, 

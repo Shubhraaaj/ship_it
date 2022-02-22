@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 export default function ImageUpload({ image, onUpdate }){
     const [images, setImages] = useState([]);
-    const [imageURLs, setImageURLs] = useState(image?.length>0?[image]:["https://i.ibb.co/qyxLRfq/Shipit-logo-upload-1.jpg"]);
+    const [imageURLs, setImageURLs] = useState([]);
     const fileInput = useRef(null);
-
+    
     const handleClick = () => {
         fileInput.current.click()
     };
@@ -21,11 +21,18 @@ export default function ImageUpload({ image, onUpdate }){
         onUpdate([...event.target.files]);
     };
 
-  return(
-        <div className="rounded-xl shadow bg-white p-4 flex">
-            <p className="flex-1 text-base font-medium text-middle self-center px-4 text-gray-600">Company LOGO</p>
-            <img className="" onClick={handleClick} src={imageURLs[0]} className="w-80 h-60 mx-auto border-2" />
-            <input ref={fileInput}  type="file" accept="image/*" onChange={onImageChange} className="hidden" />
-        </div>
+    useEffect(()=>{
+        if(image?.length>0)
+            setImageURLs([image]);
+        else
+            setImageURLs(["https://i.ibb.co/qyxLRfq/Shipit-logo-upload-1.jpg"]);
+    },[image]);
+
+    return(
+            <div className="rounded-xl shadow bg-white p-4 flex">
+                <p className="flex-1 text-base font-medium text-middle self-center px-4 text-gray-600">Company LOGO</p>
+                <img className="" onClick={handleClick} src={imageURLs[0]} className="w-80 h-60 mx-auto border-2" />
+                <input ref={fileInput}  type="file" accept="image/*" onChange={onImageChange} className="hidden" />
+            </div>
     );
 }
