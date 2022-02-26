@@ -32,7 +32,7 @@ export default function OrderDetailsCard( { orderDetails }){
             </div> */}
             <TitleText title="Order ID" text={orderDetails?.order_no}/>
             <TitleText title="Bill" text={"₹"+orderDetails?.amount+".00"}/>
-            <TitleText title="Vendor" text={orderDetails?.name}/>
+            <TitleText title="Vendor" text={orderDetails.name===undefined?orderDetails.vendor_id:orderDetails.name}/>
             <TitleText title="Current Status" text={orderDetails?.order_status}/>
             <TitleText title="Tracking Number" text={orderDetails?.tracking_id}/>
             <TitleText title="Order Type" text={orderDetails?.priority}/>

@@ -143,7 +143,8 @@ export default function PhoneLogin(){
 
     const fetchOrder = () =>{
         trackOrderByTrackId().then(res=>{
-            const ord = res.data.trackOrderByTrackId;
+            let ord = res.data.trackOrderByTrackId;
+            // ord.name = ord.vendor_id;
             const trackingPath = '/order_tracking';
             orderStore.setOrder(ord, navigate(trackingPath));
         }).catch(err=>{

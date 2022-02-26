@@ -1,9 +1,27 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import vendorStore from "../../../store/vendor";
 
 export default function MainMenu({ isWhite }){
     const vendor = window.location.href.endsWith("ile");
+    const [vendorState, setVendorState] = useState(vendorStore.initialState);
+    const [logged, setLogged] = useState(false);
+    const navigate = useNavigate();
+    useEffect(()=>{
+        if(vendorState!==vendorStore.initialState&&vendorState.auth_token!=='')
+            console.log('vendor',vendorState);
+    },[vendorState]);
+
+    useLayoutEffect(()=>{
+        vendorStore.subscribe(setVendorState);
+        vendorStore.init(); 
+    },[]);
+
+    const logout = () => {
+        vendorStore.clearVendorDetails();
+        navigate('/');
+    };
 
     return(
         <div className={isWhite?"relative py-6 px-4 sm:px-6 lg:px-20 bg-white":"relative py-6 px-4 sm:px-6 lg:px-20 bg-red-50"}>
@@ -25,20 +43,33 @@ export default function MainMenu({ isWhite }){
                         </div>
                     </div>
                 </div>
-                <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-12">
-                    <motion.a
-                        initial={{ scale: 0.9 }}
-                        animate={{ scale: 1 }}
-                        whileHover={{ scale: 1.2 }}
-                        className="font-medium text-gray-700 hover:gray-900">ABOUT</motion.a>
+                {vendorState?.auth_token.length>0?
+                    <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-12">
+                        <Link to="/vendor_dashboard">
+                            <p className="font-medium inline text-gray-700 hover:text-gray-900">DASHBOARD</p>
+                        </Link>
+                        <Link to="/vendor_profile">
+                            <p className="font-medium inline text-gray-700 hover:text-gray-900">PROFILE</p>
+                        </Link>
+                        <Link to="/vendor_profile">
+                            <p className="font-medium inline text-gray-700 hover:text-gray-900">CONTACT US</p>
+                        </Link>
+                        <button onClick={logout} className="font-medium inline text-red-500 hover:text-red-600">LOG OUT</button>
+                    </div>
+                    :<div className="hidden md:block md:ml-10 md:pr-4 md:space-x-12">
+                        <motion.a
+                            initial={{ scale: 0.9 }}
+                            animate={{ scale: 1 }}
+                            whileHover={{ scale: 1.2 }}
+                            className="font-medium text-gray-700 hover:gray-900">ABOUT</motion.a>
 
-                    <a href="#" className="font-medium text-gray-700 hover:text-gray-900">TRACK PACKAGE</a>
+                        <a href="#" className="font-medium text-gray-700 hover:text-gray-900">TRACK PACKAGE</a>
 
-                    <a href="#" className="font-medium text-gray-700 hover:text-gray-900">CONTACT US</a>
-                    <Link to={!vendor?'/vendor_login':'/vendor_dashboard'}>
-                        <p className="font-medium inline text-red-500 hover:text-red-600">{!vendor?"VENDOR LOGIN":"DASHBOARD"}</p>
-                    </Link>
-                </div>
+                        <a href="#" className="font-medium text-gray-700 hover:text-gray-900">CONTACT US</a>
+                        <Link to={!vendor?'/vendor_login':'/vendor_dashboard'}>
+                            <p className="font-medium inline text-red-500 hover:text-red-600">{!vendor?"VENDOR LOGIN":"DASHBOARD"}</p>
+                        </Link>
+                    </div>}
             </nav>
         </div>
     );
