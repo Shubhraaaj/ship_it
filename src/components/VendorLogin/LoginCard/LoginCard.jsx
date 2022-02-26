@@ -52,6 +52,7 @@ export default function LoginCard(){
                 id: res.data.login.id,
                 vendor_id: res.data.login.vendor_id
             };
+            // localStorage.setItem('token', res.data.login.auth_token);
             vendorStore.setVendorDetails(vendorDetails);
             loadingStore.setLoading({loading: false});
             navigate(profilePath);

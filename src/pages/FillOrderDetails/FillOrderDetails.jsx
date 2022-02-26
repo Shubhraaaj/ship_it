@@ -65,6 +65,7 @@ export default function FillOrderDetails(){
             weight_unit: "Kgs",
             destination_city: searchState.destination,
             source_city: searchState.source,
+            created_by: 'ashu.shubhraj@gmail.com'
         };
         CreateOrder({
             variables: {

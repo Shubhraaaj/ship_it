@@ -19,7 +19,8 @@ let initialState = {
     live_status: '',
     order_status: '',
     weight: '',
-    weight_unit: ''
+    weight_unit: '',
+    created_by: ''
 };
 
 let state = initialState;

@@ -15,6 +15,8 @@ export default function VendorProfile(){
     const [vendorProfile, setVendorProfile] = useState({});
     const [vendorState, setVendorState] = useState(vendorStore.initialState);
 
+    const [defaultImg, setDefaultImg] = useState("");
+
     // API Mutations
     const [updateProfile, {datas,loadings,errors}] = useMutation(UPDATE_PROFILE);
     const [uploadTariffChart, {datat, loadingt, errort}] = useMutation(TARIFFCHART_UPLOAD);
@@ -40,10 +42,12 @@ export default function VendorProfile(){
                     phone_number: vendor?.phone_number,
                     address: vendor?.address,
                     website: vendor?.website,
-                    tariff_chart_id: vendor?.tariff_chart_id,
+                    // tariff_chart_id: vendor?.tariff_chart_id,
+                    priority_factor: vendor?.tariff_chart_id,
                     logo: vendor?.logo,
                     service_cities: vendor?.service_cities
                 });
+                setDefaultImg(vendor?.logo);
             }
         }).catch(err=>console.log(err));
     },[vendorState]);
@@ -51,9 +55,9 @@ export default function VendorProfile(){
     useLayoutEffect(()=>{
         vendorStore.subscribe(setVendorState);
         vendorStore.init();
+        // console.log('check',localStorage.getItem('token'));
     },[]);
 
-    const [image, setImage] = useState();
     const logoChange = (value) => {
         setVendorProfile({ ...vendorProfile, logo: value[0] });
     };
@@ -91,11 +95,12 @@ export default function VendorProfile(){
     };
 
     const uploadTariff = async () => {
+        console.log('PF', vendorProfile.priority_factor);
         const base64excel = await getBase64(vendorProfile.tariff_chart_id);
         const tariffObj = {
             tariff: base64excel,
             vendor_id: vendorState.vendor_id,
-            priority_factor: vendorState.priority_factor
+            priority_factor: parseFloat(vendorProfile.priority_factor)
         };
         uploadTariffChart({
             variables: {
@@ -108,11 +113,10 @@ export default function VendorProfile(){
 
     const updateTariff = async () => {
         const base64excel = await getBase64(vendorProfile.tariff_chart_id);
-        console.log(base64excel);
         const tariffObj = {
-            tariff: base64excel,
+            tariff: base64excel.split(",")[1],
             vendor_id: vendorState.vendor_id,
-            priority_factor: vendorState.priority_factor
+            priority_factor: parseFloat(vendorProfile.priority_factor)
         }
         updateTariffChart({
             variables: {
@@ -127,24 +131,30 @@ export default function VendorProfile(){
     const handleSubmit = async() => {
         // console.log('test', data.getVendorProfile.tariff_chart_id==="");
         // console.log('data', data);
-        // console.log('vendor', vendorProfile);
-        if(data.getVendorProfile.tariff_chart_id.length===0){
-            console.log('upload new tariff chart');
-            uploadTariff();
-        }
-        else{
-            // updateTariff();
-        }
+        console.log('vendor', vendorProfile);
+        // if(data.getVendorProfile.tariff_chart_id.length===0){
+        //     console.log('upload new tariff chart');
+        //     uploadTariff();
+        // }
+        // else{
+            updateTariff();
+        // }
     };
 
     const uploadVendorDetails = async (id) => {
-        const base64logo = await getBase64(vendorProfile.logo);
+        let base64logo = "";
+        if(defaultImg!==vendorProfile.logo)
+            base64logo = await getBase64(vendorProfile.logo);
+        else
+            base64logo = defaultImg;
         const updatedProfile = {
             vendor_id: vendorState.vendor_id,
             name: vendorProfile.name,
             phone_number: vendorProfile.phone_number,
             email: vendorProfile.email,
             service_cities: vendorProfile.service_cities,
+            address: vendorProfile.address,
+            website: vendorProfile.website,
             logo: base64logo,
             tariff_chart_id: id
         };

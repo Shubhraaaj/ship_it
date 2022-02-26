@@ -39,14 +39,12 @@ export const FETCH_ORDERS = gql `
 `;
 
 export const FETCH_VENDORS = gql `
-  query getAllVendors($type: String!, $weight: Float!, $destCity: String!, $srcCity: String!){
-    getAllVendors(type: $type, weight: $weight, destCity: $destCity, srcCity: $srcCity){
-      vendor_id
-      name
-      amount
+  query getAllVendors($vendorQueryInput: VendorQueryInput!){
+    getAllVendors(vendorQueryInput: $vendorQueryInput){
+      result
+      total_elements
     }
-  }
-`;
+  }`;
 
 export const FETCH_ORDER_BY_TID = gql`
   query trackOrderByTrackId($id: String!){

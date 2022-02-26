@@ -13,15 +13,12 @@ export default function VendorTable(){
     const [filters, setFilters] = useState({});
     const [companyState, setCompanyState] = useState(companyStore.initialState);
     const [searchState, setSearchState] = useState(searchStore.initialState);
-
+    const [vendorQuery, setVendorQuery] = useState({});
     const [vendor, setVendor] = useState([]);
 
     const [getAllVendors, {data, loading, error}] = useLazyQuery(FETCH_VENDORS, {
         variables: {
-            type: searchState.type,
-            weight: parseFloat(searchState.weight),
-            srcCity: searchState.source,
-            destCity: searchState.destination
+            vendorQueryInput: vendorQuery
         }
     });
 
@@ -35,58 +32,50 @@ export default function VendorTable(){
             searchState.destination!=="Not selected"&&
             searchState.source!=="Not selected")
         {
-            getAllVendors().then(res=>{
-                setVendor(res.data.getAllVendors);
+            setVendorQuery({
+                type: searchState.type.toLowerCase(),
+                weight: parseFloat(searchState.weight),
+                destCity: searchState.destination.toLowerCase(),
+                srcCity: searchState.source.toLowerCase(),
             });
         }
     },[searchState]);
+
+    useEffect(()=>{
+        console.log('Q',vendorQuery);
+        if(vendorQuery.type!=="Not selected"&&
+            vendorQuery.destCity!=="Not selected"&&
+            vendorQuery.srcCity!=="Not selected")
+        {
+            getAllVendors().then(res=>{
+                const results = JSON.parse(res.data.getAllVendors.result);
+                if(results.length>0){
+                    let finalResults = [];
+                    results.map((res)=>{
+                        let result = {
+                            name: res.name,
+                            normal_time: Math.ceil(res.distance/50),
+                            priority_time: Math.ceil((res.distance/50)/res.priority_factor),
+                            vendor_id: res.vendor_id,
+                        };
+                        let wt = Number(vendorQuery.weight)*1000;
+                        let amt = Number(res.price);
+                        result.normal_price = Math.ceil(amt+((wt/100)*15));
+                        result.priority_price = Math.ceil(amt+((wt/100)*15)*res.priority_factor);
+                        finalResults=[...finalResults, result];
+                    });
+                    if(finalResults.length===results.length){
+                        console.log('sp', finalResults);
+                        setVendor(finalResults);
+                    }
+                }
+            });
+        }
+    },[vendorQuery]);
     
     const [asc, setAsc] = useState({
         vendor: true
     });
-
-    const vendors = [
-        {
-            vendor_id: 1,
-            name: "DTDC",
-            normal_delivery: "2",
-            priority_delivery: "1",
-            normal_price: "420",
-            priority_price: "650"
-        },
-        {
-            vendor_id: 2,
-            name: "Delhivery",
-            normal_delivery: "2",
-            priority_delivery: "1",
-            normal_price: "350",
-            priority_price: "500"
-        },
-        {
-            vendor_id: 3,
-            name: "Gati",
-            normal_delivery: "3",
-            priority_delivery: "2",
-            normal_price: "720",
-            priority_price: "1050"
-        },
-        {
-            vendor_id: 4,
-            name: "Ekart",
-            normal_delivery: "4",
-            priority_delivery: "2",
-            normal_price: "220",
-            priority_price: "350"
-        },
-        {
-            vendor_id: 5,
-            name: "Firstflight",
-            normal_delivery: "5",
-            priority_delivery: "2",
-            normal_price: "820",
-            priority_price: "1650"
-        }
-    ];
 
     const handleClick = (e) => {
         const name = e.target.name;
@@ -101,10 +90,10 @@ export default function VendorTable(){
         const company_details = {
             vendor_id: company.vendor_id,
             name: company.name,
-            normal_price: company.amount,
-            priority_price: String(Number(company.amount)*1.2),
-            normal_delivery: '2',
-            priority_delivery: '4'
+            normal_price: company.normal_price.toString(),
+            priority_price:  company.priority_price.toString(),
+            normal_delivery: company.normal_time,
+            priority_delivery: company.priority_time
         };
         companyStore.setCompanyDetails(company_details, navigate(createOrderPath));
     };
@@ -142,14 +131,13 @@ export default function VendorTable(){
                                     {vendor.name}
                                 </td>
                                 <td className="text-sm text-left text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                    {/* {`${Number(vendor.priority_delivery)} - ${Number(vendor.priority_delivery)+1} Days in Priority | ${Number(vendor.normal_delivery)+1} - ${Number(vendor.normal_delivery)+2} Days in Normal`} */}
-                                    {`2 - 4 Days in Priority | 4 - 6 Days in Normal`}
+                                    {`${vendor.priority_time} - ${vendor.priority_time+1} Days in Priority | ${vendor.normal_time} - ${vendor.normal_time+2} Days in Normal`}
                                 </td>
                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                    <p className="btn btn-primary px-4 py-1 rounded-md text-gray-900 font-medium">Rs.{vendor.amount}</p>
+                                    <p className="btn btn-primary px-4 py-1 rounded-md text-gray-900 font-medium">Rs.{vendor.normal_price}</p>
                                 </td>
                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                    <p className="btn btn-primary px-4 py-1 rounded-md text-gray-900 font-medium">Rs.{Number(vendor.amount)*1.2}</p>
+                                    <p className="btn btn-primary px-4 py-1 rounded-md text-gray-900 font-medium">Rs.{vendor.priority_price}</p>
                                 </td>
                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     <FaArrowCircleRight onClick={()=>handleSelect(vendor)} className="text-gray-300 hover:text-red-500 text-3xl font-medium"/>
