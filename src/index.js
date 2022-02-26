@@ -11,7 +11,7 @@ const client = new ApolloClient({
 });
 
 const shipitClient = new ApolloClient({
-  uri: 'http://13.234.187.25:5000/graphql',
+  uri: 'http://13.234.187.25:3000/graphql',
   // uri: 'http://localhost:5000/graphql',
   cache: new InMemoryCache()
 });

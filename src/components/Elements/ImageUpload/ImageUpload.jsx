@@ -24,7 +24,7 @@ export default function ImageUpload({ image, onUpdate }){
     useEffect(()=>{
         if(image?.length>0)
             setImageURLs([image]);
-        else
+        else if(image===undefined)
             setImageURLs(["https://i.ibb.co/qyxLRfq/Shipit-logo-upload-1.jpg"]);
     },[image]);
 

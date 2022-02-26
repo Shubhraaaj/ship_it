@@ -27,6 +27,8 @@ export default function VendorProfile(){
         }
     });
 
+    // Fetch priority
+
     useEffect(()=>{
         getVendorProfile().then(res=>{
             const vendor = res?.data?.getVendorProfile;
@@ -70,7 +72,8 @@ export default function VendorProfile(){
             email: value.email, 
             name: value.name, 
             phone_number: value.phone_number, 
-            website: value.website
+            website: value.website,
+            priority_factor: value.priority_factor
         });
     };
 
@@ -91,8 +94,9 @@ export default function VendorProfile(){
         const base64excel = await getBase64(vendorProfile.tariff_chart_id);
         const tariffObj = {
             tariff: base64excel,
-            vendor_id: vendorState.vendor_id
-        }
+            vendor_id: vendorState.vendor_id,
+            priority_factor: vendorState.priority_factor
+        };
         uploadTariffChart({
             variables: {
                 createTariffChartInput: tariffObj
@@ -107,7 +111,8 @@ export default function VendorProfile(){
         console.log(base64excel);
         const tariffObj = {
             tariff: base64excel,
-            vendor_id: vendorState.vendor_id
+            vendor_id: vendorState.vendor_id,
+            priority_factor: vendorState.priority_factor
         }
         updateTariffChart({
             variables: {
@@ -121,12 +126,15 @@ export default function VendorProfile(){
 
     const handleSubmit = async() => {
         // console.log('test', data.getVendorProfile.tariff_chart_id==="");
-        console.log('data', data);
-        console.log('vendor', vendorProfile);
-        // if(data.getVendorProfile.tariff_chart_id==="")
-        //     uploadTariff();
-        // else
-        // updateTariff();
+        // console.log('data', data);
+        // console.log('vendor', vendorProfile);
+        if(data.getVendorProfile.tariff_chart_id.length===0){
+            console.log('upload new tariff chart');
+            uploadTariff();
+        }
+        else{
+            // updateTariff();
+        }
     };
 
     const uploadVendorDetails = async (id) => {
