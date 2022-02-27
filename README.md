@@ -19,7 +19,7 @@ cutting-edge features. Shipit offers a convenient way to track your packages fro
 5. [License](https://github.com/kkk0908/ship_it/blob/master/README.md#technology-stack)
 
 # Demo
-Live Demo
+Live Demo (http://13.234.187.25/)
 
 ### Please Note:
  1. We recommend using this app in Google Chrome 
