@@ -56,7 +56,7 @@ We tried to use a completely modern tech stack while testing out some new techno
 ### Resources
  1. [Wireframe](https://drive.google.com/file/d/1QNgsELv85IbT0VONmC_ZNm5tXXgwt0_9/view?usp=sharing)
  2. [HLD](https://drive.google.com/file/d/1C9m3af62yJw2TywOVmdrXIXlCX_3friL/view?usp=sharing)
- 3. [PRD (https://drive.google.com/file/d/1wYQg9mZEXqYVgBwsT0wiq0Y3o3BANbNT/view?usp=sharing)
+ 3. [PRD](https://drive.google.com/file/d/1wYQg9mZEXqYVgBwsT0wiq0Y3o3BANbNT/view?usp=sharing)
 
 ### Authors
  1. [Shubhraj Prasad Singh](https://github.com/Shubhraaaj)
