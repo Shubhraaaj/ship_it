@@ -13,7 +13,7 @@ cutting-edge features. Shipit offers a convenient way to track your packages fro
 
 # Table of Contents
 1. [Demo](https://github.com/kkk0908/shipit-api-server-final/edit/master/README.md#demo)
-2. [Installation](https://github.com/kkk0908/ship_it/blob/master/README.md#technology-stack)
+2. [Installation](https://github.com/kkk0908/ship_it/edit/master/README.md#installation)
 3. [Technology Stack](https://github.com/kkk0908/ship_it/blob/master/README.md#technology-stack)
 4. [Authors](https://github.com/kkk0908/ship_it/blob/master/README.md#technology-stack)
 5. [License](https://github.com/kkk0908/ship_it/blob/master/README.md#technology-stack)
