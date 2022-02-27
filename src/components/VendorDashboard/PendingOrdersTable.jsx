@@ -2,6 +2,7 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { MODIFY_ORDER_BY_ID } from "../../graphql/mutations";
 import { FETCH_ORDERS } from "../../graphql/queries";
+import loadingStore from "../../store/loading";
 import vendorStore from "../../store/vendor";
 
 export default function PendingOrdersTable(){
@@ -32,7 +33,7 @@ export default function PendingOrdersTable(){
             getOrders().then((res)=>{
                 setOrdered(res.data.getOrders);
             }).catch((err)=>{
-                console.log(err);
+                // console.log(err);
             });
         }
     },[vendorState]);
@@ -42,7 +43,7 @@ export default function PendingOrdersTable(){
         
         let order = ordered[index];
         let live_stats = JSON.parse(order.live_status);
-
+        loadingStore.setLoading({loading: true});
         if(selectedValue==="Rejected"){
             // Reject order and update live_status
             const order_status = "Rejected";
@@ -55,7 +56,9 @@ export default function PendingOrdersTable(){
                 order_no: order.order_no,
                 order_status: order_status,
                 live_status: JSON.stringify(live_stats)
-            }, modifyOrderByOrderNo());
+            }, modifyOrderByOrderNo().finally(()=>{
+                loadingStore.setLoading({loading: false});
+            }));
         }
         else if(selectedValue==="Ongoing"){
             // Accept the order and update live_status
@@ -69,7 +72,9 @@ export default function PendingOrdersTable(){
                 order_no: order.order_no,
                 order_status: order_status,
                 live_status: JSON.stringify(live_stats)
-            }, modifyOrderByOrderNo());
+            }, modifyOrderByOrderNo().finally(()=>{
+                loadingStore.setLoading({loading: false});
+            }));
         }
     };
     
@@ -107,6 +112,11 @@ export default function PendingOrdersTable(){
                             </th>
                         </tr>
                     </thead>
+                    {ordered.length===0 && 
+                        <div className="my-8">
+                            <p>No Pending orders available</p>
+                        </div>
+                    }
                     <tbody>
                         {ordered.map((order,index)=>
                             <tr key={index} className="bg-white border-b">

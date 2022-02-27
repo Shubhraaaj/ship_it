@@ -33,7 +33,7 @@ export default function OrderDetails(){
             {/* <MainMenu /> */}
             <div className="grid grid-cols-2 my-8">
                 <div className="flex flex-col mx-36 my-auto">
-                    <LeftTextwBtn text={text} button={`Amount - Rs.${orderState.amount}.00`}/>
+                    <LeftTextwBtn text={text} button={`Amount - Rs.${orderState.amount}.00`} hidden/>
                 </div>
                 <div className="mx-20 mb-4">
                     <OrderDetailsCard orderDetails={orderState}/>

@@ -1,9 +1,11 @@
 import { useLazyQuery } from "@apollo/client";
+import { motion } from "framer-motion";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { FaArrowCircleRight, FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { FETCH_VENDORS } from "../../../graphql/queries";
 import companyStore from "../../../store/company";
+import loadingStore from "../../../store/loading";
 import searchStore from "../../../store/search";
 import Filters from "../../Elements/Filters/Filters";
 
@@ -32,6 +34,7 @@ export default function VendorTable(){
             searchState.destination!=="Not selected"&&
             searchState.source!=="Not selected")
         {
+            // loadingStore.setLoading({loading: false});
             setVendorQuery({
                 type: searchState.type.toLowerCase(),
                 weight: parseFloat(searchState.weight),
@@ -98,7 +101,7 @@ export default function VendorTable(){
 
     return(
         <>
-        <Filters />
+        {/* <Filters /> */}
         <div className="flex flex-col mx-20">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8">
@@ -107,16 +110,17 @@ export default function VendorTable(){
                     <thead className="border-b bg-gray-100">
                         <tr>
                             <th scope="col" className="px-6 py-4">
-                                <button name="vendor" onClick={handleClick} className="text-md font-medium text-gray-800">Vendor{asc.vendor?<FaArrowDown className="text-sm inline ml-1 text-gray-600 self-center"/>:<FaArrowUp className="text-sm inline ml-1 text-gray-600 self-center"/>}</button>
+                                {/* <button name="vendor" onClick={handleClick} className="text-md font-medium text-gray-800">Vendor{asc.vendor?<FaArrowDown className="text-sm inline ml-1 text-gray-600 self-center"/>:<FaArrowUp className="text-sm inline ml-1 text-gray-600 self-center"/>}</button> */}
+                                <button name="vendor" onClick={handleClick} className="text-md font-medium text-gray-800">Vendor</button>
                             </th>
                             <th scope="col" className="px-6 text-left py-4">
-                                <button name="delivery" onClick={handleClick} className="text-md font-medium text-gray-800">Delivery Time{asc?.delivery?(asc.delivery?<FaArrowDown className="text-sm inline ml-1 text-gray-600 self-center"/>:<FaArrowUp className="text-sm inline ml-1 text-gray-600 self-center"/>):""}</button>
+                                <button name="delivery" onClick={handleClick} className="text-md font-medium text-gray-800">Delivery Time</button>
                             </th>
                             <th scope="col" className="px-6 py-4">
-                                <button name="normal" onClick={handleClick} className="text-md font-medium text-gray-800">Normal Tariff{asc?.normal?(asc.normal?<FaArrowDown className="text-sm inline ml-1 text-gray-600 self-center"/>:<FaArrowUp className="text-sm inline ml-1 text-gray-600 self-center"/>):""}</button>
+                                <button name="normal" onClick={handleClick} className="text-md font-medium text-gray-800">Normal Tariff</button>
                             </th>
                             <th scope="col" className="px-6 py-4">
-                                <button name="priority" onClick={handleClick} className="text-md font-medium text-gray-800">Priority Tariff{asc?.priority?(asc.priority?<FaArrowDown className="text-sm inline ml-1 text-gray-600 self-center"/>:<FaArrowUp className="text-sm inline ml-1 text-gray-600 self-center"/>):""}</button>
+                                <button name="priority" onClick={handleClick} className="text-md font-medium text-gray-800">Priority Tariff</button>
                             </th>
                             <th scope="col" className="text-md font-medium text-gray-800 px-6 py-4">
                             </th>
@@ -124,7 +128,12 @@ export default function VendorTable(){
                     </thead>
                     <tbody>
                         {vendor.map((vendor, index)=>
-                            <tr key={index} className="bg-white border-b">
+                            <motion.tr 
+                                initial={{ scale: 0.8 }}
+                                animate={{ scale: 1 }}
+                                whileHover={{ scale: 1.03 }}
+                                onClick={()=>handleSelect(vendor)}
+                                key={index} className="bg-white border-b cursor-pointer">
                                 <td className="px-auto py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {vendor.name}
                                 </td>
@@ -140,7 +149,7 @@ export default function VendorTable(){
                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     <FaArrowCircleRight onClick={()=>handleSelect(vendor)} className="text-gray-300 hover:text-red-500 text-3xl font-medium"/>
                                 </td>
-                            </tr>
+                            </motion.tr>
                         )}
                     </tbody>
                     </table>

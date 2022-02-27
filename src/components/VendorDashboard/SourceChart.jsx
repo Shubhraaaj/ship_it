@@ -4,7 +4,7 @@ export default function SourceChart({ details }){
     let dats = [];
     let max = 10;
     if(details?.delhi!==undefined){
-        console.log('dps', details);
+        // console.log('dps', details);
         max = Math.max(details.delhi, details.chandigarh, details.chennai, details.hydrabad, details.indore,
             details.jaipur, details.kolkata, details.lucknow, details.manali, details.mumbai);
         dats=[

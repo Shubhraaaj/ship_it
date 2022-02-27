@@ -2,7 +2,7 @@ import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "rec
 
 export default function MonthwiseChart({ details }){
     let dats = [];
-    if(details?.January!==null){
+    if(details?.January!==undefined){
         dats = [
             {
                 "name": "January",

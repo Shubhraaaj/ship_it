@@ -21,7 +21,7 @@ export default function TariffChart({ onUpdate }){
                 </p>
             </div>
             <div className="border rounded-3xl flex mt-4 justify-between">
-                <p onClick={handleClick} className="px-6 text-base font-medium text-gray-600 py-2 flex-1 text-left" >{filename}</p>
+                <p onClick={handleClick} className="px-6 text-base font-medium text-gray-600 py-2 flex-1 text-left" >{filename!=="Click to select file"?filename.slice(12):filename}</p>
                 <input ref={fileInput} type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleExcel} className="px-8 py-2 hidden" />
                 <button type="button" className="bg-red-400 font-medium text-white rounded-3xl px-8">UPLOAD CHART</button>
             </div>

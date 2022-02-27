@@ -32,7 +32,7 @@ export default function RejectedOrdersTable(){
             getOrders().then((res)=>{
                 setOrdered(res.data.getOrders);
             }).catch((err)=>{
-                console.log(err);
+                // console.log(err);
             });
         }
     },[vendorState]);
@@ -149,6 +149,11 @@ export default function RejectedOrdersTable(){
                             </th>
                         </tr>
                     </thead>
+                    {ordered.length===0 && 
+                        <div className="my-8">
+                            <p>No Rejected orders available</p>
+                        </div>
+                    }
                     <tbody>
                         {ordered.map((order,index)=>
                             <tr key={index} className="bg-white border-b">

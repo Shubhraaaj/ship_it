@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import loadingStore from "../../../store/loading";
 import searchStore from "../../../store/search";
 import SelectCity from "../../Elements/SelectCity/SelectCity";
 
@@ -28,6 +29,7 @@ export default function SearchBar(){
 
     const handleClick = () => {
         searchStore.setSearch(searchState);
+        // loadingStore.setLoading({loading: true});
     };
     
     return(

@@ -17,7 +17,7 @@ export default function LoginCard(){
     const [err, setErr] = useState("");
     const [login, { data, loading, error }] = useMutation(SIGNIN_VENDOR);
     const navigate = useNavigate();
-    const profilePath = '/vendor_profile';
+    const dashboardPath = '/vendor_dashboard';
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -55,7 +55,7 @@ export default function LoginCard(){
             // localStorage.setItem('token', res.data.login.auth_token);
             vendorStore.setVendorDetails(vendorDetails);
             loadingStore.setLoading({loading: false});
-            navigate(profilePath);
+            navigate(dashboardPath);
         }).catch(err=>{
             loadingStore.setLoading({loading: false});
             setErr(err.message);

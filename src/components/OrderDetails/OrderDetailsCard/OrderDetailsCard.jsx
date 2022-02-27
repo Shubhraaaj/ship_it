@@ -7,7 +7,7 @@ export default function OrderDetailsCard( { orderDetails }){
     const [receiverDetails, setReceiverDetails] = useState("");
     const navigate = useNavigate();
     const handleCancel = () => {
-        console.log("Cancel order");
+        // console.log("Cancel order");
     };
 
     useEffect(()=>{

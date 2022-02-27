@@ -8,13 +8,14 @@ import { TARIFFCHART_UPDATE, TARIFFCHART_UPLOAD, UPDATE_PROFILE } from "../../gr
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import vendorStore from "../../store/vendor";
 import { GET_VENDOR_PROFILE } from "../../graphql/queries";
+import loadingStore from "../../store/loading";
 
 
 export default function VendorProfile(){
 
     const [vendorProfile, setVendorProfile] = useState({});
     const [vendorState, setVendorState] = useState(vendorStore.initialState);
-
+    const [stat, setStat] = useState("");
     const [defaultImg, setDefaultImg] = useState("");
 
     // API Mutations
@@ -49,7 +50,9 @@ export default function VendorProfile(){
                 });
                 setDefaultImg(vendor?.logo);
             }
-        }).catch(err=>console.log(err));
+        }).catch(err=>{
+            // console.log(err);
+        });
     },[vendorState]);
 
     useLayoutEffect(()=>{
@@ -107,7 +110,11 @@ export default function VendorProfile(){
             }
         }).then(res=>{
             uploadVendorDetails(res.data.uploadTariffChart.id);
-        }).catch(err=>console.log(err));
+        }).catch(err=>{
+            // console.log(err);
+        }).finally(()=>{
+            loadingStore.setLoading({loading: false});
+        });
     }
 
     const updateTariff = async () => {
@@ -124,11 +131,16 @@ export default function VendorProfile(){
         }).then(res=>{
             const id = res.data.updateTariffChart.id;
             uploadVendorDetails(id);
-        }).catch(err=>console.log(err));
+        }).catch(err=>{
+            // console.log(err);
+        }).finally(()=>{
+            loadingStore.setLoading({loading: false});
+        });
     }
 
     const handleSubmit = async() => {
-        console.log('vendor', vendorProfile);
+        // console.log('vendor', vendorProfile);
+        loadingStore.setLoading({loading: true});
         uploadTariff().then(res=>{
             if(res===undefined){
                 updateTariff();
@@ -158,12 +170,15 @@ export default function VendorProfile(){
                 updateVendorInput: updatedProfile
             }
         }).then(res=>{
-            console.log(res);
-        }).catch(err=>console.log(err));
+            setStat("Profile updated");
+        }).catch(err=>{
+            setStat("Profile update failed");
+        });
     };
 
     return(
         <div className="flex flex-col h-1/2 bg-red-50">
+            {stat.length>0 && <p className="text-red-500 font-medium">{stat}</p>}
             <form noValidate className="grid grid-cols-2 my-8">
                 <div className="flex flex-col mx-20 ">
                     <ImageUpload className="flex-1" image={vendorProfile?.logo} onUpdate={logoChange} />

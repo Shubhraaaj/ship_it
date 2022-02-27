@@ -124,7 +124,7 @@ export default function PhoneLogin(){
                 setOtpView(true);
                 console.log(otp);
             }).catch(err=>{
-                console.log(err);
+                // console.log(err);
             }).finally(()=>{
                 loadingStore.setLoading({loading: false});
             });

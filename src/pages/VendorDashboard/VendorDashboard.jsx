@@ -30,13 +30,15 @@ export default function VendorDashboard(){
             const vendor = res?.data?.getOrdersMatrix;
             if(vendor!==null&&vendor!==undefined)
             {
-                console.log('sp', vendor);
+                // console.log('sp', vendor);
                 setTopSrc(JSON.parse(vendor?.topSourceCities));
                 setTopDest(JSON.parse(vendor?.topDestCities));
                 setOrders(JSON.parse(vendor?.numberOfOrdersByStatus));
                 setMonthWise(JSON.parse(vendor?.monthwiseOrders));
             }
-        }).catch(err=>console.log(err));
+        }).catch(err=>{
+            // console.log(err);
+        });
     },[vendorState]);
 
     useLayoutEffect(()=>{

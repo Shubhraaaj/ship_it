@@ -82,7 +82,7 @@ export default function FillOrderDetails(){
             newOrder.live_status = orderCreated.live_status;
             orderStore.setOrder(newOrder, navigate(placeOrder));
         }).catch(err=>{
-            console.log(err);
+            // console.log(err);
         }).finally(()=>{
             loadingStore.setLoading({loading: false});
         });
@@ -98,7 +98,7 @@ export default function FillOrderDetails(){
                     <Switch priority={priority} onChange={(prior)=>setPriority(prior)} />
                 </div>
                 <div className="h-0.5 w-80 bg-gray-200 rounded-xl mx-auto mt-4" />
-                <div className="flex flex-row mt-8">
+                <div className="flex flex-row mt-12">
                     <div className="mx-12">
                         <OrderDetails isSender onChange={handleSenderChanges} />
                     </div>

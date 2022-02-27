@@ -8,7 +8,7 @@ export default function LiveStatus({ orderDetails }){
         if(orderDetails.live_status!==''){
             const orderStatusUpdates = JSON.parse(orderDetails.live_status);
             setOrderStatuses(orderStatusUpdates);
-            console.log(orderStatusUpdates);
+            // console.log(orderStatusUpdates);
         }
     },[orderDetails]);
 

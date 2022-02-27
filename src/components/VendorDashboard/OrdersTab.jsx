@@ -28,69 +28,31 @@ export default function OrdersTab(){
             <ul className="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0" id="tabs-tab"
                 role="tablist">
                 <li className="nav-item" role="presentation">
-                    <button onClick={handleClick} className="
-                        nav-link
-                        block
-                        font-medium
-                        text-xs
-                        leading-tight
-                        bg-red-200
-                        uppercase
-                        border-x-0 border-t-0 border-b-2 border-transparent
-                        px-6
-                        py-3
-                        hover:border-transparent hover:bg-gray-100
-                        focus:border-transparent
-                        active
-                    " id="tabs-pending-tab">Pending</button>
+                    <button onClick={handleClick} 
+                    className={(tab==="tabs-pending-tab"?"bg-red-200":"bg-gray-200")+" nav-link block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 hover:border-transparent hover:bg-red-200 focus:border-transparent active"} 
+                        id="tabs-pending-tab">
+                            Pending</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <button onClick={handleClick} className="
-                    nav-link
-                    block
-                    font-medium
-                    text-xs
-                    leading-tight
-                    bg-gray-200
-                    uppercase
-                    border-x-0 border-t-0 border-b-2 border-transparent
-                    px-6
-                    py-3
-                    hover:border-transparent hover:bg-gray-100
-                    focus:border-transparent
-                    " id="tabs-accepted-tab">Ongoing</button>
+                    <button onClick={handleClick} 
+                        className={(tab==="tabs-accepted-tab"?"bg-red-200":"bg-gray-200")+" nav-link block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 hover:border-transparent hover:bg-red-200 focus:border-transparent active"}  
+                        id="tabs-accepted-tab">
+                            Ongoing
+                    </button>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <button onClick={handleClick} className="
-                    nav-link
-                    block
-                    font-medium
-                    text-xs
-                    leading-tight
-                    bg-gray-200
-                    uppercase
-                    border-x-0 border-t-0 border-b-2 border-transparent
-                    px-6
-                    py-3
-                    hover:border-transparent hover:bg-gray-100
-                    focus:border-transparent
-                    " id="tabs-completed-tab">Completed</button>
+                    <button onClick={handleClick} 
+                        className={(tab==="tabs-completed-tab"?"bg-red-200":"bg-gray-200")+" nav-link block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 hover:border-transparent hover:bg-red-200 focus:border-transparent active"}  
+                        id="tabs-completed-tab">
+                            Completed
+                        </button>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <button onClick={handleClick} className="
-                        nav-link
-                        block
-                        font-medium
-                        text-xs
-                        leading-tight
-                        bg-gray-200
-                        uppercase
-                        border-x-0 border-t-0 border-b-2 border-transparent
-                        px-6
-                        py-3
-                        hover:border-transparent hover:bg-gray-100
-                        focus:border-transparent
-                    " id="tabs-rejected-tab">Rejected</button>
+                    <button onClick={handleClick} 
+                        className={(tab==="tabs-rejected-tab"?"bg-red-200":"bg-gray-200")+" nav-link block font-medium text-xs leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 hover:border-transparent hover:bg-red-200 focus:border-transparent active"}  
+                        id="tabs-rejected-tab">
+                            Rejected
+                    </button>
                 </li>
             </ul>
             <div className="tab-content" id="tabs-tabContent">
@@ -100,18 +62,6 @@ export default function OrdersTab(){
                     {tab==="tabs-completed-tab"&&<CompletedOrdersTable />}
                     {tab==="tabs-rejected-tab"&&<RejectedOrdersTable />}
                 </div>
-                {/* <div className="tab-pane fade active" id="tabs-pending" role="tabpanel" aria-labelledby="tabs-pending-tab">
-                    <PendingOrdersTable />
-                </div>
-                <div className="tab-pane fade" id="tabs-accepted" role="tabpanel" aria-labelledby="tabs-accepted-tab">
-                    <OngoingOrdersTable />
-                </div>
-                <div className="tab-pane fade" id="tabs-completed" role="tabpanel" aria-labelledby="tabs-completed-tab">
-                    <CompletedOrdersTable />
-                </div>
-                <div className="tab-pane fade" id="tabs-rejected" role="tabpanel" aria-labelledby="tabs-rejected-tab">
-                    <RejectedOrdersTable />
-                </div> */}
             </div>
         </div>
     );
