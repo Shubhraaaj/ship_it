@@ -26,9 +26,6 @@ cutting-edge features. Shipit offers a convenient way to track your packages fro
  2. Use the app on Laptop/desktop only as of now.
 
 ### Test Credentials:
-   #### * For User
-         1. Email: <user_email>
-         2. OTP: <email_otp>
    #### * for Vendor
           1. Email:"test@delhivery.com"
           2. password: #Test2021#
