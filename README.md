@@ -49,12 +49,12 @@ Open http://localhost:3000 to view it in the browser
 ### Technology Stack
 We tried to use a completely modern tech stack while testing out some new technologies that we had never used before. This resulted in a fast, performant, and easily-extensible web app that should be fairly future-proof for the coming next several years. 
 * We used:
-     1. Frontend React: React, Apollo Client, RxJS, Framer Motion, Tailwind css, Recharts
-     2. Backend NestJS, TypeORM,
-     3. Auth JWT token
-     4.Database: PostgreSQL
-     5.Deployments: AWS EC2, AWS Codepipeline
-     6. CI/CD: GitHub
+     1. Frontend - React, Apollo Client, RxJS, Framer Motion, Tailwind css, Recharts
+     2. Backend - NestJS, TypeORM,
+     3. Auth - JWT token
+     4. Database - PostgreSQL
+     5. Deployments - AWS EC2, AWS Codepipeline
+     6. CI/CD - GitHub
 
 ### Authors
  1. [Shubhraj Prasad Singh](https://github.com/Shubhraaaj)
