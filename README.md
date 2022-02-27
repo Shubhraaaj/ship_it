@@ -27,11 +27,11 @@ cutting-edge features. Shipit offers a convenient way to track your packages fro
 
 ### Test Credentials:
    #### * For User
-         1. Phone Number: 9999999999
-         2. OTP: 111111
+         1. Email: <user_email>
+         2. OTP: <email_otp>
    #### * for Vendor
-          1. Email:"contact2satish.patna@gmail.com"
-          2. password: 123456
+          1. Email:"test@delhivery.com"
+          2. password: #Test2021#
 
 # Installation
 ### 1. Clone the repo
