@@ -9,7 +9,7 @@ export default function PendingOrdersTable(){
     const [ordered, setOrdered] = useState([]);
     const [orderUpdate, setOrderUpdate] = useState({});
     const [vendorState, setVendorState] = useState(vendorStore.initialState);
-
+    const [verify, setVerify] = useState("");
     const [getOrders, {data, loading, errors}] = useLazyQuery(FETCH_ORDERS, {
         variables: {
             vendor_id: vendorState.vendor_id,
@@ -29,6 +29,18 @@ export default function PendingOrdersTable(){
     },[]);
 
     useEffect(()=>{
+        if(orderUpdate?.order_no===verify){
+            modifyOrderByOrderNo().finally(()=>{
+                getOrders().then((res)=>{
+                    setOrdered(res.data.getOrders);
+                }).finally(()=>{
+                    loadingStore.setLoading({loading: false});
+                });
+            });
+        }
+    },[orderUpdate]);
+
+    useEffect(()=>{
         if(vendorState.vendor_id!==undefined&&vendorState.vendor_id.length>0){
             getOrders().then((res)=>{
                 setOrdered(res.data.getOrders);
@@ -40,8 +52,8 @@ export default function PendingOrdersTable(){
 
     const handleStatusChange = (e,index) => {
         const selectedValue = e.target.value;
-        
         let order = ordered[index];
+        setVerify(order.order_no);
         let live_stats = JSON.parse(order.live_status);
         loadingStore.setLoading({loading: true});
         if(selectedValue==="Rejected"){
@@ -56,9 +68,7 @@ export default function PendingOrdersTable(){
                 order_no: order.order_no,
                 order_status: order_status,
                 live_status: JSON.stringify(live_stats)
-            }, modifyOrderByOrderNo().finally(()=>{
-                loadingStore.setLoading({loading: false});
-            }));
+            });
         }
         else if(selectedValue==="Ongoing"){
             // Accept the order and update live_status
@@ -72,9 +82,7 @@ export default function PendingOrdersTable(){
                 order_no: order.order_no,
                 order_status: order_status,
                 live_status: JSON.stringify(live_stats)
-            }, modifyOrderByOrderNo().finally(()=>{
-                loadingStore.setLoading({loading: false});
-            }));
+            });
         }
     };
     

@@ -2,13 +2,14 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { MODIFY_ORDER_BY_ID } from "../../graphql/mutations";
 import { FETCH_ORDERS } from "../../graphql/queries";
+import loadingStore from "../../store/loading";
 import vendorStore from "../../store/vendor";
 
 export default function OngoingOrdersTable(){
     const [ordered, setOrdered] = useState([]);
     const [orderUpdate, setOrderUpdate] = useState({});
     const [vendorState, setVendorState] = useState(vendorStore.initialState);
-
+    const [verify, setVerify] = useState("");
     const [getOrders, {data, loading, errors}] = useLazyQuery(FETCH_ORDERS, {
         variables: {
             vendor_id: vendorState.vendor_id,
@@ -28,6 +29,18 @@ export default function OngoingOrdersTable(){
     },[]);
 
     useEffect(()=>{
+        if(orderUpdate?.order_no===verify){
+            modifyOrderByOrderNo().finally(()=>{
+                getOrders().then((res)=>{
+                    setOrdered(res.data.getOrders);
+                }).finally(()=>{
+                    loadingStore.setLoading({loading: false});
+                });
+            });
+        }
+    },[orderUpdate]);
+
+    useEffect(()=>{
         if(vendorState.vendor_id!==undefined&&vendorState.vendor_id.length>0){
             getOrders().then((res)=>{
                 setOrdered(res.data.getOrders);
@@ -39,10 +52,10 @@ export default function OngoingOrdersTable(){
 
     const handleStatusChange = (e,index) => {
         const selectedValue = e.target.value;
-        
         let order = ordered[index];
+        setVerify(order.order_no);
         let live_stats = JSON.parse(order.live_status);
-
+        loadingStore.setLoading({loading: true});
         if(selectedValue==="PickedUp"){
             // Pickup order and update live_status
             let order_status = "Ongoing";
@@ -55,7 +68,7 @@ export default function OngoingOrdersTable(){
                 order_no: order.order_no,
                 order_status: order_status,
                 live_status: JSON.stringify(live_stats)
-            }, modifyOrderByOrderNo());
+            });
         }
         else if(selectedValue==="InTransit"){
             // In transit and update live_status
@@ -69,7 +82,7 @@ export default function OngoingOrdersTable(){
                 order_no: order.order_no,
                 order_status: order_status,
                 live_status: JSON.stringify(live_stats)
-            }, modifyOrderByOrderNo());
+            });
         }
         else if(selectedValue==="OutForDelivery"){
             // Out for delivery and update live_status
@@ -83,7 +96,7 @@ export default function OngoingOrdersTable(){
                 order_no: order.order_no,
                 order_status: order_status,
                 live_status: JSON.stringify(live_stats)
-            }, modifyOrderByOrderNo());
+            });
         }
         else if(selectedValue==="Delivered"){
             // Delivered and update live_status
@@ -97,7 +110,7 @@ export default function OngoingOrdersTable(){
                 order_no: order.order_no,
                 order_status: order_status,
                 live_status: JSON.stringify(live_stats)
-            }, modifyOrderByOrderNo());
+            });
         }
         else if(selectedValue==="Rejected"){
             // Reject order and update live_status
@@ -111,7 +124,7 @@ export default function OngoingOrdersTable(){
                 order_no: order.order_no,
                 order_status: order_status,
                 live_status: JSON.stringify(live_stats)
-            }, modifyOrderByOrderNo());
+            });
         }
     };
     
