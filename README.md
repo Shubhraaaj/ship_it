@@ -35,26 +35,13 @@ Live Demo
 
 # Installation
 ### 1. Clone the repo
-```git clonehttps://github.com/pesto-students/caretaker-fe-n10-eta.git careTracker-fe```
-### 2. Set environment variables
-```
-# MAIL CONFIGURATION
+```git clone https://github.com/kkk0908/ship_it.git``` 
 
-MAIL_SERVICE = 
-EMAIL_USER =
-EMAIL_PASS = 
-EMAIL_HOST = 
-EMAIL_PORT = 
-SECURE = 
-MAIL_USE_TLS = 
-MAIL_USE_SSL = 
-```
-
-### Install NPM packages
+### 2. Install NPM packages
 
 ```npm install```
 
-### Run
+### 3. Run
 ```npm start```
 
 Open http://localhost:3000 to view it in the browser
