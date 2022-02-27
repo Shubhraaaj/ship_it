@@ -8,7 +8,6 @@ export default function HeroSection() {
     const [count, setCount] = useState(0);
     return (
         <div>
-            {/* <MainMenu /> */}
             <div className="relative bg-white overflow-hidden">
                 <div className="absolute">
                     <main className="mt-10 mx-12 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-16 xl:mt-28">
