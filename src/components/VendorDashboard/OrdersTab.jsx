@@ -1,13 +1,34 @@
-import OrdersTable from "./OrdersTable";
+import { useState } from "react";
+import CompletedOrdersTable from "./CompletedOrdersTable";
+import OngoingOrdersTable from "./OngoingOrdersTable";
+import PendingOrdersTable from "./PendingOrdersTable";
+import RejectedOrdersTable from "./RejectedOrdersTable";
 
 export default function OrdersTab(){
-    
+    const [tab, setTab] = useState("tabs-pending-tab");
+
+    const handleClick = (e) => {
+        const id = e.target.id;
+        if(id==="tabs-pending-tab"){
+            setTab("tabs-pending-tab");
+        }
+        else if(id==="tabs-accepted-tab"){
+            setTab("tabs-accepted-tab");
+        }
+        else if(id==="tabs-completed-tab"){
+            setTab("tabs-completed-tab");
+        }
+        else if(id==="tabs-rejected-tab"){
+            setTab("tabs-rejected-tab");
+        }
+    };
+
     return(
         <div className="rounded-lg shadow-lg mx-20 my-12">
             <ul className="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0" id="tabs-tab"
                 role="tablist">
                 <li className="nav-item" role="presentation">
-                    <a href="#tabs-pending" className="
+                    <button onClick={handleClick} className="
                         nav-link
                         block
                         font-medium
@@ -21,11 +42,10 @@ export default function OrdersTab(){
                         hover:border-transparent hover:bg-gray-100
                         focus:border-transparent
                         active
-                    " id="tabs-pending-tab" data-bs-toggle="pill" data-bs-target="#tabs-pending" role="tab" aria-controls="tabs-pending"
-                    aria-selected="true">Pending</a>
+                    " id="tabs-pending-tab">Pending</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <a href="#tabs-accepted" className="
+                    <button onClick={handleClick} className="
                     nav-link
                     block
                     font-medium
@@ -38,11 +58,10 @@ export default function OrdersTab(){
                     py-3
                     hover:border-transparent hover:bg-gray-100
                     focus:border-transparent
-                    " id="tabs-accepted-tab" data-bs-toggle="pill" data-bs-target="#tabs-accepted" role="tab"
-                    aria-controls="tabs-accepted" aria-selected="false">Ongoing</a>
+                    " id="tabs-accepted-tab">Ongoing</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <a href="#tabs-completed" className="
+                    <button onClick={handleClick} className="
                     nav-link
                     block
                     font-medium
@@ -55,11 +74,10 @@ export default function OrdersTab(){
                     py-3
                     hover:border-transparent hover:bg-gray-100
                     focus:border-transparent
-                    " id="tabs-completed-tab" data-bs-toggle="pill" data-bs-target="#tabs-completed" role="tab"
-                    aria-controls="tabs-completed" aria-selected="false">Completed</a>
+                    " id="tabs-completed-tab">Completed</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                    <a href="#tabs-rejected" className="
+                    <button onClick={handleClick} className="
                         nav-link
                         block
                         font-medium
@@ -72,23 +90,28 @@ export default function OrdersTab(){
                         py-3
                         hover:border-transparent hover:bg-gray-100
                         focus:border-transparent
-                    " id="tabs-rejected-tab" data-bs-toggle="pill" data-bs-target="#tabs-rejected" role="tab"
-                    aria-controls="tabs-rejected" aria-selected="false">Rejected</a>
+                    " id="tabs-rejected-tab">Rejected</button>
                 </li>
             </ul>
             <div className="tab-content" id="tabs-tabContent">
-                <div className="tab-pane fade show active" id="tabs-pending" role="tabpanel" aria-labelledby="tabs-pending-tab">
-                    <OrdersTable />
+                <div className="" id="tabs-pending" role="tabpanel" aria-labelledby="tabs-pending-tab">
+                    {tab==="tabs-pending-tab"&&<PendingOrdersTable />}
+                    {tab==="tabs-accepted-tab"&&<OngoingOrdersTable />}
+                    {tab==="tabs-completed-tab"&&<CompletedOrdersTable />}
+                    {tab==="tabs-rejected-tab"&&<RejectedOrdersTable />}
                 </div>
-                <div className="tab-pane hidden fade" id="tabs-accepted" role="tabpanel" aria-labelledby="tabs-accepted-tab">
-                    <OrdersTable />
+                {/* <div className="tab-pane fade active" id="tabs-pending" role="tabpanel" aria-labelledby="tabs-pending-tab">
+                    <PendingOrdersTable />
                 </div>
-                <div className="tab-pane hidden fade" id="tabs-completed" role="tabpanel" aria-labelledby="tabs-completed-tab">
-                    <OrdersTable />
+                <div className="tab-pane fade" id="tabs-accepted" role="tabpanel" aria-labelledby="tabs-accepted-tab">
+                    <OngoingOrdersTable />
                 </div>
-                <div className="tab-pane hidden fade" id="tabs-rejected" role="tabpanel" aria-labelledby="tabs-rejected-tab">
-                    <OrdersTable />
+                <div className="tab-pane fade" id="tabs-completed" role="tabpanel" aria-labelledby="tabs-completed-tab">
+                    <CompletedOrdersTable />
                 </div>
+                <div className="tab-pane fade" id="tabs-rejected" role="tabpanel" aria-labelledby="tabs-rejected-tab">
+                    <RejectedOrdersTable />
+                </div> */}
             </div>
         </div>
     );

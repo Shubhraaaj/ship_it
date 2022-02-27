@@ -94,3 +94,14 @@ mutation CreateOrder($createOrderInput: CreateOrderInput!){
     order_status
   }
 }`;
+
+export const MODIFY_ORDER_BY_ID = gql `
+  mutation modifyOrderByOrderNo($updateOrderInput: UpdateOrderInput!){
+    modifyOrderByOrderNo(updateOrderInput: $updateOrderInput){
+      order_id
+      order_no
+      live_status
+      order_status
+    }
+  }
+`;

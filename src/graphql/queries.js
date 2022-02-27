@@ -25,9 +25,11 @@ export const VERIFY_OTP = gql `
   }`;
 
 export const FETCH_ORDERS = gql `
-  query getOrders($status:String!){
-    getOrders(status:$status){
+  query getOrders($vendor_id: String!, $status:String!){
+    getOrders(vendor_id: $vendor_id, status:$status){
       order_id
+      order_no
+      live_status
       source_city
       destination_city
       type
