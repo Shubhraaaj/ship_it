@@ -38,7 +38,7 @@ export default function HeroSection() {
                         </div>
                     </main>
                 </div>
-                <div className="-mt-20">
+                <div className="-mt-20 bg-red-50 bg-contain bg-no-repeat" >
                     <img className="w-full object-cover" src="https://i.ibb.co/Dpx1YBN/Untitled-design-1.png" alt="" />
                 </div>
             </div>

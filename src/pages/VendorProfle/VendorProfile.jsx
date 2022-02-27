@@ -95,7 +95,6 @@ export default function VendorProfile(){
     };
 
     const uploadTariff = async () => {
-        console.log('PF', vendorProfile.priority_factor);
         const base64excel = await getBase64(vendorProfile.tariff_chart_id);
         const tariffObj = {
             tariff: base64excel,
@@ -129,16 +128,12 @@ export default function VendorProfile(){
     }
 
     const handleSubmit = async() => {
-        // console.log('test', data.getVendorProfile.tariff_chart_id==="");
-        // console.log('data', data);
         console.log('vendor', vendorProfile);
-        // if(data.getVendorProfile.tariff_chart_id.length===0){
-        //     console.log('upload new tariff chart');
-        //     uploadTariff();
-        // }
-        // else{
-            updateTariff();
-        // }
+        uploadTariff().then(res=>{
+            if(res===undefined){
+                updateTariff();
+            }
+        });
     };
 
     const uploadVendorDetails = async (id) => {

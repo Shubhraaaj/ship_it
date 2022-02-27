@@ -8,10 +8,10 @@ export default function MainMenu({ isWhite }){
     const [vendorState, setVendorState] = useState(vendorStore.initialState);
     const [logged, setLogged] = useState(false);
     const navigate = useNavigate();
-    useEffect(()=>{
-        if(vendorState!==vendorStore.initialState&&vendorState.auth_token!=='')
-            console.log('vendor',vendorState);
-    },[vendorState]);
+    // useEffect(()=>{
+    //     if(vendorState!==vendorStore.initialState&&vendorState.auth_token!=='')
+    //         console.log('vendor',vendorState);
+    // },[vendorState]);
 
     useLayoutEffect(()=>{
         vendorStore.subscribe(setVendorState);
@@ -96,7 +96,7 @@ export default function MainMenu({ isWhite }){
                             initial={{ scale: 0.9 }}
                             animate={{ scale: 1 }}
                             whileHover={{ scale: 1.1 }}
-                            onClick={()=>navigate('/')} 
+                            onClick={handleNavClick}
                             className="font-medium inline text-gray-700 hover:text-gray-900">
                                 CONTACT US
                         </motion.button>

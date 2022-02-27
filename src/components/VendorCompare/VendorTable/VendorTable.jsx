@@ -42,7 +42,6 @@ export default function VendorTable(){
     },[searchState]);
 
     useEffect(()=>{
-        console.log('Q',vendorQuery);
         if(vendorQuery.type!=="Not selected"&&
             vendorQuery.destCity!=="Not selected"&&
             vendorQuery.srcCity!=="Not selected")
@@ -65,7 +64,6 @@ export default function VendorTable(){
                         finalResults=[...finalResults, result];
                     });
                     if(finalResults.length===results.length){
-                        console.log('sp', finalResults);
                         setVendor(finalResults);
                     }
                 }

@@ -80,7 +80,6 @@ export default function FillOrderDetails(){
             newOrder.order_no = orderCreated.order_no;
             newOrder.tracking_id = orderCreated.tracking_id;
             newOrder.live_status = orderCreated.live_status;
-            console.log('RES', newOrder);
             orderStore.setOrder(newOrder, navigate(placeOrder));
         }).catch(err=>{
             console.log(err);

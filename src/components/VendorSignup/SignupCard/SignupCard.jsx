@@ -116,7 +116,6 @@ export default function SignupCard(){
     };
 
     const loginUser = () =>{
-        console.log("LOGIN");
         const loginInput = {
             user_email:user.email,
             password:user.password

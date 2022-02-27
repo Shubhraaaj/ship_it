@@ -1,26 +1,28 @@
 import { useEffect } from "react";
 import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
 
-export default function StatusCharts(){
-
-    const data01 = [
-        {
-          "name": "Pending",
-          "value": 10
-        },
-        {
-          "name": "Ongoing",
-          "value": 4
-        },
-        {
-          "name": "Delivered",
-          "value": 2
-        },
-        {
-          "name": "Rejected",
-          "value": 8
-        }
-      ];
+export default function StatusCharts({ details }){
+    let dats = [];
+    if(details?.ordered!==undefined){
+        dats = [
+          {
+            "name": "Pending",
+            "value": details.ordered
+          },
+          {
+            "name": "Ongoing",
+            "value": details.intransit
+          },
+          {
+            "name": "Delivered",
+            "value": details.delivered
+          },
+          {
+            "name": "Rejected",
+            "value": details.rejected
+          }
+        ];
+    }
     
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
     // const RADIAN = Math.PI / 180;
@@ -40,7 +42,7 @@ export default function StatusCharts(){
             <p className="text-left font-medium text-xl">Orders Status</p>
             <PieChart width={500} height={250}>
                 <Pie 
-                    data={data01} 
+                    data={dats} 
                     dataKey="value" 
                     nameKey="name" 
                     cx="50%" 
@@ -48,7 +50,7 @@ export default function StatusCharts(){
                     outerRadius={80} 
                     fill="#8884d8" 
                     >
-                        {data01.map((entry, index) => (
+                        {dats.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} opacity="0.75" />
                         ))}
                     </Pie>

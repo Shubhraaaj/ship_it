@@ -68,3 +68,14 @@ export const FETCH_ORDER_BY_TID = gql`
       tracking_id
     }
   }`;
+
+export const GET_METRICS = gql `
+  query getOrdersMatrix($vendor_id: String!, $filterDate: Float!){
+    getOrdersMatrix(vendor_id: $vendor_id, filterDate: $filterDate){
+      topDestCities
+      monthwiseOrders
+      numberOfOrdersByStatus
+      topSourceCities
+    }
+  }
+`;

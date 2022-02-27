@@ -93,7 +93,6 @@ export default function OngoingOrdersTable(){
                 dateTime: new Date().toISOString()
             };
             live_stats.packageDelivered = live_status;
-            console.log('DEL', live_stats, 's', order_status);  
             setOrderUpdate({
                 order_no: order.order_no,
                 order_status: order_status,

@@ -29,7 +29,6 @@ export default function RejectedOrdersTable(){
 
     useEffect(()=>{
         if(vendorState.vendor_id!==undefined&&vendorState.vendor_id.length>0){
-            console.log('sp',vendorState);
             getOrders().then((res)=>{
                 setOrdered(res.data.getOrders);
             }).catch((err)=>{

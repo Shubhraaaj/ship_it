@@ -73,7 +73,6 @@ export default function PhoneLogin(){
     });
 
     useEffect(()=>{
-        console.log('OTP VIEW');
         if(floatOtp.length===6){
             verifyOtp().then(res => {
                 if(res!==undefined&&res?.data!==null){
@@ -111,7 +110,6 @@ export default function PhoneLogin(){
     };
 
     const handleButtonClick = () => {
-        console.log('button_clicked', otpView);
         loadingStore.setLoading({loading: true});
         if(!otpView){
             const emailInput = {
@@ -136,7 +134,6 @@ export default function PhoneLogin(){
             for(const [key, value] of Object.entries(otp)){
                 x=x.concat(value);
             }
-            console.log('changed', x);
             setFloatOtp(x);
         }
     };

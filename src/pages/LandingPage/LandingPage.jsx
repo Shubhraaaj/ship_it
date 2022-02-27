@@ -16,7 +16,6 @@ export default function LandingPage () {
     const [nav,setNav] = useState(navigationStore.initialState);
 
     useEffect(()=>{
-        console.log('scroll', nav);
         if(nav.navigate==="about"){
             aboutRef.current.scrollIntoView();
         }
