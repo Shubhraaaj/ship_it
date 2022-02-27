@@ -27,7 +27,7 @@ cutting-edge features. Shipit offers a convenient way to track your packages fro
 
 ### Test Credentials:
    #### * for Vendor
-          1. Email:"test@delhivery.com"
+          1. Email:"care@delhivery.com"
           2. password: #Test2021#
 
 # Installation
