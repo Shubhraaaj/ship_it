@@ -60,11 +60,11 @@ export default function LiveStatus({ orderDetails }){
                 <Timeline 
                     date={orderStatuses?.outForDelievery?.dateTime} 
                     status={orderStatuses?.outForDelievery?.description||"Order is out for delivery"} 
-                    isCurrent={orderStatuses?.packageDelivered?.dateTime===''&&orderStatuses?.outForDelievery?.dateTime!=''}/>
+                    isCurrent={orderStatuses?.packageDelivered?.dateTime===''&&orderStatuses?.outForDelievery?.dateTime!==''}/>
                 <Timeline 
                     date={orderStatuses?.packageDelivered?.dateTime} 
                     status={orderStatuses?.packageDelivered?.description||"Package delivered"}  
-                    isCurrent={orderStatuses?.outForDelievery?.dateTime!==''}/>
+                    isCurrent={orderStatuses?.packageDelivered?.dateTime!==''}/>
             </ol>
         </div>
     );
