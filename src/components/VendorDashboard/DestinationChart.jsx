@@ -54,14 +54,15 @@ export default function DestinationChart(){
         }
     ];
     return(
-        <div>                         
-            <RadarChart outerRadius={90} width={730} height={240} data={data}>
+        <div>
+            <p className="text-left font-medium text-xl mb-8">Top Cities as Destination</p>                           
+            <RadarChart outerRadius={90} width={500} height={240} data={data}>
                 <PolarGrid />
                 <PolarAngleAxis dataKey="subject" />
                 <PolarRadiusAxis angle={30} domain={[0, 40]} />
-                <Radar name="Destination city" dataKey="A" stroke="#8884d8" fill="#82ca9d" fillOpacity={0.6} />
+                <Radar name="Destination city" dataKey="A" stroke="#8884d8" fill='#FFBB28' fillOpacity={0.6} />
                 {/* <Radar name="Lily" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} /> */}
-                <Legend />
+                {/* <Legend /> */}
             </RadarChart>
         </div>
     );

@@ -29,16 +29,17 @@ export default function MonthwiseChart(){
         }
       ];
     return(
-        <div>                           
-        <BarChart width={730} height={250} data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="Delivered" fill="#8884d8" />
-            <Bar dataKey="Orders" fill="#82ca9d" />
-        </BarChart>
+        <div>
+            <p className="text-left font-medium text-xl mb-8">Monthwise Orders</p>                           
+            <BarChart width={500} height={250} data={data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="Delivered" fill='#00C49F' opacity="0.75" />
+                <Bar dataKey="Orders" fill='#0088FE' opacity="0.75" />
+            </BarChart>
         </div>
     );
 }

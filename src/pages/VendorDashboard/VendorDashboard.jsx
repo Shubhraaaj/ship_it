@@ -8,12 +8,17 @@ import StatusCharts from "../../components/VendorDashboard/StatusCharts";
 export default function VendorDashboard(){
     return(
         <div>
-            {/* <MainMenu /> */}
             <OrdersTable />
-            <StatusCharts />
-            <MonthwiseChart />
-            <SourceChart />
-            <DestinationChart />
+            <div className="my-20">
+                <div className="flex justify-between p-10 mx-20 shadow-xl rounded-xl">
+                    <StatusCharts />
+                    <MonthwiseChart />
+                </div>
+                <div className="flex justify-between p-10 mt-8 mx-20 shadow-xl rounded-xl">
+                    <SourceChart />
+                    <DestinationChart />
+                </div>
+            </div>
         </div>
     );
 }
