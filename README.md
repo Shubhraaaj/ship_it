@@ -1,70 +1,67 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<img src="https://user-images.githubusercontent.com/32466035/155830419-4da3cf55-ff07-43cf-be72-52761de49c81.png" width="300" height="300">
 
-In the project directory, you can run:
+# Shipit
 
-### `npm start`
+The advent of on-demand applications has redefined customer convenience. The Courier
+delivery industry has transformed due to the repercussions of on-demand services. And to do
+that you would require an advanced courier & parcel delivery application that consists of all the
+cutting-edge features. Shipit offers a convenient way to track your packages from various vendors in real time: from the moment they are registered in the system (by the carrier or by the user) and up to the moment they reach their destination and are delivered to the address. It also provides the vendor partners an efficient way to manage orders, generate reports, and update order statuses.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+# Table of Contents
+1. [Demo](https://github.com/kkk0908/ship_it/blob/master/README.md#demo)
+2. [Installation](https://github.com/kkk0908/ship_it/blob/master/README.md#installation)
+3. [Technology Stack](https://github.com/kkk0908/ship_it/blob/master/README.md#technology-stack)
+4. [Authors](https://github.com/kkk0908/ship_it/blob/master/README.md#technology-stack)
+5. [License](https://github.com/kkk0908/ship_it/blob/master/README.md#technology-stack)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Demo
+[Live Demo](http://13.234.187.25/)
 
-### `npm run build`
+### Please Note:
+ 1. We recommend using this app in Google Chrome 
+ 2. Use the app on Laptop/desktop only as of now.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Test Credentials:
+   #### * for Vendor
+          1. Email:"care@delhivery.com"
+          2. password: #Test2021#
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Installation
+### 1. Clone the repo
+```git clone https://github.com/kkk0908/ship_it.git``` 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Install NPM packages
 
-### `npm run eject`
+```npm install```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. Run
+```npm start```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open http://localhost:3000 to view it in the browser
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Technology Stack
+We tried to use a completely modern tech stack while testing out some new technologies that we had never used before. This resulted in a fast, performant, and easily-extensible web app that should be fairly future-proof for the coming next several years. 
+* We used:
+     1. Frontend - React, Apollo Client, RxJS, Framer Motion, Tailwind css, Recharts
+     2. Backend - NestJS, TypeORM,
+     3. Auth - JWT token
+     4. Database - PostgreSQL
+     5. Deployments - AWS EC2, AWS Codepipeline
+     6. CI/CD - GitHub
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Resources
+ 1. [Wireframe](https://drive.google.com/file/d/1QNgsELv85IbT0VONmC_ZNm5tXXgwt0_9/view?usp=sharing)
+ 2. [HLD](https://drive.google.com/file/d/1C9m3af62yJw2TywOVmdrXIXlCX_3friL/view?usp=sharing)
+ 3. [PRD](https://drive.google.com/file/d/1wYQg9mZEXqYVgBwsT0wiq0Y3o3BANbNT/view?usp=sharing)
 
-## Learn More
+### Authors
+ 1. [Shubhraj Prasad Singh](https://github.com/Shubhraaaj)
+ 2. [Satish Kumar](https://github.com/kkk0908)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### License
+MIT
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
