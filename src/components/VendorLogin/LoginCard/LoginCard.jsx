@@ -13,7 +13,10 @@ import vendorStore from "../../../store/vendor";
  */
 
 export default function LoginCard(){
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({
+        email: "care@delhivery.com",
+        password: "#Test2021#"
+    });
     const [err, setErr] = useState("");
     const [login, { data, loading, error }] = useMutation(SIGNIN_VENDOR);
     const navigate = useNavigate();
@@ -67,8 +70,8 @@ export default function LoginCard(){
             <h1 className="text-xl tracking-tight text-center mb-8 font-medium text-gray-900 sm:text-5xl md:text-4xl">Login Now</h1>
             {err?.length>0&&<p className="text-sm text-red-500 ">{err}</p>}
             <form noValidate>
-                <input type="email" onBlur={handleChange} name="email" className="font-medium mx-auto mt-4 form-control block w-full px-4 py-3 text-base placeholder:font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your email" />
-                <input type="password" onBlur={handleChange} name="password" className="font-medium mx-auto my-6 form-control block w-full px-4 py-3 text-base placeholder:font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your password" />
+                <input type="email" onBlur={handleChange} defaultValue="care@delhivery.com" name="email" className="font-medium mx-auto mt-4 form-control block w-full px-4 py-3 text-base placeholder:font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your email" />
+                <input type="password" onBlur={handleChange} defaultValue="#Test2021#" name="password" className="font-medium mx-auto my-6 form-control block w-full px-4 py-3 text-base placeholder:font-normal text-gray-600 bg-white bg-clip-padding border border-solid border-gray-300 rounded-3xl transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Your password" />
                 <label className="block text-left mb-2 ml-2">
                     <input type="checkbox" className="w-4 h-4 border-red-200 align-middle"/>
                     <span className="text-gray-400 ml-2 font-light text-sm" >I agree to the Terms of service</span>
